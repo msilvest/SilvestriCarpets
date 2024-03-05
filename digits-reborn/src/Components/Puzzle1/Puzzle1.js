@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import Puzzle1List from "./Puzzle1List";
-import getAllPuzzles from "../../Common/Data.js";
+import getAllPuzzles from "../../Common/Data";
+import getOnePuzzle from "../../Common/OnePuzzle";
 
 export default function Puzzle1() {
     const [parsed, setParsed] = useState([]);
 
     useEffect(() => {
-      getAllPuzzles().then((parsed) => {
+      getOnePuzzle().then((parsed) => {
         setParsed(parsed);
       });
     }, []);
