@@ -16,6 +16,8 @@ export default function Puzzle1() {
       return <div>Loading...</div>;
     }
   
+    console.log("parsed")
+    console.log(parsed)
     return <Puzzle1List parsed={parsed} />;
     // return (
     //     <section>
