@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Puzzle1List from "./Puzzle1List";
-import getAllPuzzles from "../../Common/Data";
-import getOnePuzzle from "../../Common/OnePuzzle";
+// import getAllPuzzles from "../../Services/Day";
+import { getOnePuzzle } from "../../Services/Puzzle";
 
 export default function Puzzle1() {
     const [parsed, setParsed] = useState([]);
