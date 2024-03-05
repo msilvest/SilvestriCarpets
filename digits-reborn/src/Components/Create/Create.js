@@ -1,11 +1,10 @@
-/* This is our Login Component (stateful) (parent) */
+/* This is our Create Component (stateful) (parent) */
 /* Currently, the user can type anything in and the login function will 
 work. We plan to add authentification in future iterations. */
-import { useState } from "react";
-import { Link } from "react-router-dom";
 
+import { useState } from "react";
   
-  function Login({ onLogin }) {
+  function Create({ onLogin }) {
     /* Use state to monitor user login info */
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -21,9 +20,9 @@ import { Link } from "react-router-dom";
   
     return (
       <div>
-        <h2>Login</h2>
+        <h2>Create</h2>
         <form onSubmit={handleLogin}>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Enter Username:</label>
           <input
             type="text"
             id="username"
@@ -32,7 +31,7 @@ import { Link } from "react-router-dom";
             required
           />
   
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Enter Password:</label>
           <input
             type="password"
             id="password"
@@ -40,11 +39,9 @@ import { Link } from "react-router-dom";
             onInput={(e) => setPassword(e.target.value)}
             required
           />
-          <Link to="/Puzzle1">
-            <button type="submit">Login</button>
-          </Link>
+          <button type="submit">Login</button>
         </form>
       </div>
     )
   }
-  export default Login;
+  export default Create;
