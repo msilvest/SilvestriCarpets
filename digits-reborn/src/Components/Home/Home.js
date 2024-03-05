@@ -5,16 +5,25 @@ export default function Home() {
         <section>
             <h1>Digits Reborn</h1>
             <div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/Login">Login</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">About</Link>
-                        </li>
-                    </ul>
-                </nav>
+                <Link to="/Login">
+                    <button>
+                        Sign In
+                    </button>
+                </Link>
+            </div>
+            <div>
+                <Link to="/Create">
+                    <button>
+                        Create Account
+                    </button>
+                </Link>
+            </div>
+            <div>
+                <Link to="/Puzzle1">
+                    <button>
+                        Guest User
+                    </button>
+                </Link>
             </div>
       </section>
     );
