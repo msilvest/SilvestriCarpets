@@ -7,7 +7,7 @@ export default function Puzzle1() {
     const [parsed, setParsed] = useState([]);
 
     useEffect(() => {
-      getOnePuzzle().then((parsed) => {
+      getOnePuzzle("Gz4c9hrYnk").then((parsed) => {
         setParsed(parsed);
       });
     }, []);

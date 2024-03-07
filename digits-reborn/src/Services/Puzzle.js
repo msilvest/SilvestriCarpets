@@ -11,10 +11,10 @@ export const getAllPuzzles = async () => {
       return results;
   };
 
-export const getOnePuzzle = async () => {
+export const getOnePuzzle = async (name) => {
     let Puzzles = Parse.Object.extend("Puzzles");
     let query = new Parse.Query(Puzzles);
-    const results = await query.get("Gz4c9hrYnk");
+    const results = await query.get(name);
     // console.log("results:")
     // console.log(results.attributes)
 
