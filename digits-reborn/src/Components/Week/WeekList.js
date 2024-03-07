@@ -9,12 +9,10 @@ export default function DayList({ parsed }) {
         <h1>Choose a Day</h1>
         <ul>
          {parsed.map((item) => (
-            <li>
-              {Object.keys(item.attributes).map(
-                (key) => `${key}: ${item.attributes[key]} | `
-              )}
-            </li>
-          ))}
+            <button>
+              {item.attributes.dayName}
+            </button>
+          ))} 
          </ul>
       </div>
     );
