@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import DayList  from "./WeekList";
+import WeekList  from "./WeekList";
 import {getAllDays} from "../../Services/Day";
 
 export default function Week() {
@@ -15,5 +15,5 @@ export default function Week() {
       return <div>Loading...</div>;
     }
   
-    return <DayList parsed={parsed} />;
+    return <WeekList parsed={parsed} />;
   }

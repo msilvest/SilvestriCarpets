@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function DayList({ parsed }) {
+export default function WeekList({ parsed }) {
     // Check if parsed exists and is an object
     if (!parsed || typeof parsed !== 'object') {
       return <div>No parsed data available</div>;

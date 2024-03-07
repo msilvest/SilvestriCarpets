@@ -1,4 +1,4 @@
-export default function Puzzle1List({ parsed }) {
+export default function PuzzleList({ parsed }) {
     // Check if parsed exists and is an object
     if (!parsed || typeof parsed !== 'object') {
       return <div>No parsed data available</div>;

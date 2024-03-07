@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Puzzle1List from "./GameList";
-import { getOnePuzzle} from "../../Services/Puzzle";
+import PuzzleList from "./PuzzleList";
+import { getOnePuzzle} from "../../Services/Puzzles";
 import { useParams } from "react-router-dom";
 
-export default function Puzzle1() {
+export default function Puzzle() {
     const [parsed, setParsed] = useState([]);
     const { puzzleId } = useParams();
 
@@ -17,5 +17,5 @@ export default function Puzzle1() {
       return <div>Loading...</div>;
     }
   
-    return <Puzzle1List parsed={parsed} />;
+    return <PuzzleList parsed={parsed} />;
   }

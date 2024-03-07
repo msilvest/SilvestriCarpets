@@ -1,9 +1,12 @@
+// This stateless parent component is used to display all the names of the puzzles 
+// available for a user to play given what day of the week they selected.
+
 import { useState, useEffect } from "react";
-import AllDayGamesList from "./AllDayGamesList";
+import AllPuzzlesList from "./AllPuzzlesList";
 import { getPuzzlesForDay } from "../../Services/Puzzle";
 import { useParams } from "react-router-dom";
 
-export default function DayGames() {
+export default function AllPuzzles() {
     const [parsed, setParsed] = useState([]);
     const { dayId } = useParams();
 
@@ -17,5 +20,5 @@ export default function DayGames() {
       return <div>Loading...</div>;
     }
   
-    return <AllDayGamesList parsed={parsed} />;
+    return <AllPuzzlesList parsed={parsed} />;
   }
