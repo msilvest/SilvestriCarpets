@@ -1,7 +1,8 @@
 import Home from "./Home/Home";
 import Login from "./Login/Login";
 import Create from "./Create/Create";
-import Puzzle1 from "./Puzzle1/Puzzle1";
+import Puzzle1 from "./Game/Game";
+import Week from "./Week/Week";
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -20,6 +21,7 @@ export default function Components() {
         <Route path="/Login" element={<Login onLogin={handleLogin}/>} />
         <Route path="/Create" element={<Create />} />
         <Route path="/Puzzle1" element={<Puzzle1 />} />
+        <Route path="/Week" element={<Week />} />
       </Routes>
       {/* Convenient place to put footer since outside of Routes so nav is rendered
       at all Routes */}

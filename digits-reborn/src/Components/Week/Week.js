@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import Puzzle1List from "./Puzzle1List";
-// import getAllPuzzles from "../../Services/Day";
-import { getOnePuzzle } from "../../Services/Puzzle";
+import DayList  from "./WeekList";
+import {getAllDays} from "../../Services/Day";
 
-export default function Puzzle1() {
+export default function Week() {
     const [parsed, setParsed] = useState([]);
 
     useEffect(() => {
-      getOnePuzzle("Gz4c9hrYnk").then((parsed) => {
+      getAllDays().then((parsed) => {
         setParsed(parsed);
       });
     }, []);
@@ -16,9 +15,7 @@ export default function Puzzle1() {
       return <div>Loading...</div>;
     }
   
-    console.log("parsed")
-    console.log(parsed)
-    return <Puzzle1List parsed={parsed} />;
+    return <DayList parsed={parsed} />;
     // return (
     //     <section>
     //         <h1>Puzzle1</h1>

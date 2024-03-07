@@ -19,7 +19,7 @@ export default function Home() {
                 </Link>
             </div>
             <div>
-                <Link to="/Puzzle1">
+                <Link to="/Week">
                     <button>
                         Guest User
                     </button>

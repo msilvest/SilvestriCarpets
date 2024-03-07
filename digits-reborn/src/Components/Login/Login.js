@@ -40,7 +40,7 @@ import { Link } from "react-router-dom";
             onInput={(e) => setPassword(e.target.value)}
             required
           />
-          <Link to="/Puzzle1">
+          <Link to="/Week">
             <button type="submit">Login</button>
           </Link>
         </form>
