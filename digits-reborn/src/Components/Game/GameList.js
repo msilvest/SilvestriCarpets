@@ -7,7 +7,7 @@ export default function Puzzle1List({ parsed }) {
     // Render the buttons
     return (
       <div>
-        <h1>Puzzle 1</h1>
+        <h1>Puzzle!</h1>
         <ul>
           {Object.entries(parsed).map(([key, value]) => (
             <button key={key}>

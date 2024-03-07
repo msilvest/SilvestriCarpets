@@ -1,7 +1,7 @@
 /* This is our Create Component (stateful) (parent) */
 /* Currently, the user can type anything in and the login function will 
 work. We plan to add authentification in future iterations. */
-
+import { Link } from "react-router-dom";
 import { useState } from "react";
   
   function Create({ onLogin }) {
@@ -39,7 +39,9 @@ import { useState } from "react";
             onInput={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">Login</button>
+          <Link to="/Week">
+            <button type="submit">Login</button>
+          </Link>
         </form>
       </div>
     )

@@ -1,19 +1,20 @@
 import { Link } from "react-router-dom";
 
-export default function DayList({ parsed }) {
+export default function AllDayGamesList({ parsed }) {
     // Check if parsed exists and is an object
     if (!parsed || typeof parsed !== 'object') {
       return <div>No parsed data available</div>;
     }
-
+  
+    // Render the buttons
     return (
       <div>
-        <h1>Choose a Day</h1>
+        <h1>All Puzzles</h1>
         <ul>
          {parsed.map((item) => (
-          <Link to={`/AllPuzzles/${item.id}`}>
+          <Link to={`/Puzzle/${item.id}`}>
             <button>
-              {item.attributes.dayName}
+              {item.attributes.name}
             </button>
           </Link>
           ))} 

@@ -16,9 +16,4 @@ export default function Week() {
     }
   
     return <DayList parsed={parsed} />;
-    // return (
-    //     <section>
-    //         <h1>Puzzle1</h1>
-    //     </section>
-    // );
   }

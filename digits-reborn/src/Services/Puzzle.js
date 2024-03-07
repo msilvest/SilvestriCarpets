@@ -11,12 +11,25 @@ export const getAllPuzzles = async () => {
       return results;
   };
 
-export const getOnePuzzle = async (name) => {
+export const getPuzzlesForDay = async (dayId) => {
+    // First query to get the day from the id passed in
+    let Days = Parse.Object.extend("Days");
+    let query1 = new Parse.Query(Days);
+    const the_day = await query1.get(dayId)
+
+    // Now query to get the puzzles associated with the day object
+    let Puzzles = Parse.Object.extend("Puzzles");
+    let query2 = new Parse.Query(Puzzles);
+    query2.equalTo("day", the_day);
+    const results = await query2.find();
+
+    return results;
+}
+
+export const getOnePuzzle = async (puzzleId) => {
     let Puzzles = Parse.Object.extend("Puzzles");
     let query = new Parse.Query(Puzzles);
-    const results = await query.get(name);
-    // console.log("results:")
-    // console.log(results.attributes)
+    const results = await query.get(puzzleId);
 
     // Filter attributes based on validKeys
     const filteredAttributes = {};
@@ -26,7 +39,5 @@ export const getOnePuzzle = async (name) => {
         }
     });
 
-    // console.log("return")
-    // console.log(typeof(filteredAttributes))
     return filteredAttributes;
 };
