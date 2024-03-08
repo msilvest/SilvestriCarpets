@@ -1,3 +1,4 @@
+// This is where we initialize the parameters to connect to our database
 module.exports = {
     PARSE_APP_ID: "hcAZULvW3Er0nB9WqNn0VTZ4oCNycv4PICAwKQCi",
     PARSE_JAVASCRIPT_KEY: "s53iHDnPnwdt5hTa9hikYploXe50m9c8C2XTAFA1",
