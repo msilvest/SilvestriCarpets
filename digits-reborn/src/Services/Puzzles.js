@@ -1,9 +1,14 @@
+// These are the services associated with the "Puzzles" class. Currently,
+// we have three methods that read information from the Puzzles class, each 
+// of which are described below.
+
 import Parse from "parse";
 
 const validKeys = [
     "target", "num1", "num2", "num3", "num4", "num5", "num6"
 ];
 
+// Get all puzzles in the Puzzles class
 export const getAllPuzzles = async () => {
     let Puzzles = Parse.Object.extend("Puzzles");
     let query = new Parse.Query(Puzzles);
@@ -11,6 +16,8 @@ export const getAllPuzzles = async () => {
       return results;
   };
 
+// Get all puzzles associated with the inputted id, 
+// which corresponds to a day in the Days class
 export const getPuzzlesForDay = async (dayId) => {
     // First query to get the day from the id passed in
     let Days = Parse.Object.extend("Days");
@@ -26,6 +33,7 @@ export const getPuzzlesForDay = async (dayId) => {
     return results;
 }
 
+// Get the puzzle from the Puzzles class associated with the inputted id
 export const getOnePuzzle = async (puzzleId) => {
     let Puzzles = Parse.Object.extend("Puzzles");
     let query = new Parse.Query(Puzzles);

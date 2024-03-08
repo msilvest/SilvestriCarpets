@@ -1,4 +1,5 @@
-// import logo from './logo.svg';
+// This is our App, where we initialize Parse and display our program to users.
+
 import './App.css';
 import Components from "./Components/Components.js";
 import * as Env from "./environments.js";

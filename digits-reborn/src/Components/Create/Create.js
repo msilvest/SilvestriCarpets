@@ -1,18 +1,19 @@
-/* This is our Create Component (stateful) (parent) */
-/* Currently, the user can type anything in and the login function will 
-work. We plan to add authentification in future iterations. */
+// This is our Create Component (stateful) (parent)
+// Currently, the user can type anything in and the login function will 
+// work. We plan to add authentification in future iterations.
+
 import { Link } from "react-router-dom";
 import { useState } from "react";
   
   function Create({ onLogin }) {
-    /* Use state to monitor user login info */
+    // Use state to monitor user login info 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
   
-    /* Handle login triggered by form submission */
+    // Handle login triggered by form submission
     const handleLogin = (e) => {
       e.preventDefault();
-      /* Ensure that username field is not empty */
+      // Ensure that username field is not empty
       if (username.trim() !== "") {
         onLogin(username);
       }
