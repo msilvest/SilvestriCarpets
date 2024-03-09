@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
  
-## [0.0.2] - Changes from Feature 3 to Feature 4
+## [0.2.0] - Changes from Feature 3 to Feature 4
  
 ### Added
 - async data retrevial using Back4App data
@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
  
  
-## [0.0.1] - Changes from Feature 2 to Feature 3
+## [0.1.0] - Changes from Feature 2 to Feature 3
  
 ### Added
 - Implemented axios to retreive digits data from our digits.json file
