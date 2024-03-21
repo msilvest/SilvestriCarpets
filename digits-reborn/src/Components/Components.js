@@ -2,8 +2,10 @@
 // We plan to update the login logic when we add authentification.
 
 import Home from "./Home/Home";
-import Login from "./Login/Login";
-import Create from "./Create/Create";
+// import Login from "./Login/Login";
+// import Create from "./Create/Create";
+import AuthRegister from "./Auth/AuthRegister";
+import AuthLogin from "./Auth/AuthLogin";
 import Puzzle from "./Puzzle/Puzzle";
 import Week from "./Week/Week";
 import AllPuzzles from "./AllPuzzles/AllPuzzles"
@@ -23,8 +25,8 @@ export default function Components() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login onLogin={handleLogin}/>} />
-        <Route path="/Create" element={<Create />} />
+        <Route path="/Login" element={<AuthLogin />} />
+        <Route path="/Create" element={<AuthRegister />} />
         <Route path="/Puzzle/:puzzleId" element={<Puzzle />} />
         <Route path="/Week" element={<Week />} />
         <Route path="/AllPuzzles/:dayId" element={<AllPuzzles />} />
