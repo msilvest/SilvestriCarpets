@@ -9,16 +9,16 @@ import AuthLogin from "./Auth/AuthLogin";
 import Puzzle from "./Puzzle/Puzzle";
 import Week from "./Week/Week";
 import AllPuzzles from "./AllPuzzles/AllPuzzles"
-import { useState } from "react";
+// import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export default function Components() {
 
   // Handle login triggered by form submission
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const handleLogin = () => {
+  //   setIsLoggedIn(true);
+  // };
 
   // Create routes to be used throughout the program
   return (

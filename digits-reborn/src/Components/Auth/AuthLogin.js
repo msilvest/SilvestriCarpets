@@ -30,7 +30,7 @@ const AuthLogin = () => {
           alert(
             `${userLoggedIn.get("firstName")}, you successfully logged in!`
           );
-          navigate("/");
+          navigate("/Week");
         }
         // TODO: redirect user to main app
         setAdd(false);

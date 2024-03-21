@@ -5,6 +5,9 @@
 // not finished inputting all our data.
 
 import { Link } from "react-router-dom";
+import { checkUser } from "../Auth/AuthService";
+import Parse from "parse";
+
 
 export default function WeekList({ parsed }) {
     // Check if parsed exists and is an object
@@ -12,9 +15,17 @@ export default function WeekList({ parsed }) {
       return <div>No parsed data available</div>;
     }
 
+    var user = "Guest"
+    if (checkUser()) {
+      const the_user = Parse.User.current();
+      user = the_user.get("firstName");
+      console.log(user);
+    }
+
     return (
       <div>
         <h1>Choose a Day</h1>
+        <p> Hi {user} </p>
         <ul>
          {parsed.map((item) => (
           <Link to={`/AllPuzzles/${item.id}`}>

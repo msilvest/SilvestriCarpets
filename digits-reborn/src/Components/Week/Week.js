@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import WeekList  from "./WeekList";
-import {getAllDays} from "../../Services/Days";
+import { getAllDays } from "../../Services/Days";
 
 export default function Week() {
     const [parsed, setParsed] = useState([]);

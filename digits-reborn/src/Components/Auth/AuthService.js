@@ -4,7 +4,7 @@ import Parse from "parse";
 export const createUser = (newUser) => {
   const user = new Parse.User();
 
-  user.set("username", newUser.email);
+  user.set("username", newUser.username);
   user.set("firstName", newUser.firstName);
   user.set("lastName", newUser.lastName);
   user.set("password", newUser.password);
@@ -26,12 +26,12 @@ export const loginUser = (currUser) => {
   const user = new Parse.User();
 
   user.set("password", currUser.password);
-  user.set("username", currUser.email);
+  user.set("username", currUser.username);
 
   console.log("User: ", user);
   console.log();
   return user
-    .logIn(user.email, user.password)
+    .logIn(user.username, user.password)
     .then((currUserSaved) => {
       return currUserSaved;
     })
