@@ -19,7 +19,6 @@ export default function WeekList({ parsed }) {
     if (checkUser()) {
       const the_user = Parse.User.current();
       user = the_user.get("firstName");
-      console.log(user);
     }
 
     return (
