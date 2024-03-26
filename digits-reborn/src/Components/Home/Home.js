@@ -5,11 +5,19 @@
 // scores if they are signed in, otherwise the scores will not be saved.
 
 import { Link } from "react-router-dom";
+import { checkUser } from "../Auth/AuthService";
 
 export default function Home() {
     return (
         <section>
             <h1>Digits Reborn</h1>
+            {checkUser() ? 
+            <div>
+                <button>
+                    Sign Out
+                </button>   
+            </div> : 
+            <div>
             <div>
                 <Link to="/Login">
                     <button>
@@ -31,6 +39,7 @@ export default function Home() {
                     </button>
                 </Link>
             </div>
+            </div>}
       </section>
     );
   }
