@@ -9,14 +9,6 @@ import { checkUser, handleLogout } from "../Auth/AuthService";
 
 export default function Home() {
 
-    // const handleLogout = () => {
-    //     logoutUser();
-    //     // Timeout so the logout alert displays properly
-    //     setTimeout(() => {
-    //         window.location.reload();
-    //       }, 500);
-    //   };
-
     return (
         <section>
             <h1>Digits Reborn</h1>
@@ -31,6 +23,13 @@ export default function Home() {
                 <Link to="/MyScores">
                     <button>
                         View My Scores
+                    </button>
+                </Link>
+                </div> 
+                <div>
+                <Link to="/Week">
+                    <button>
+                        Go to Puzzles
                     </button>
                 </Link>
                 </div> 

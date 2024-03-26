@@ -56,6 +56,13 @@ export default function WeekList({ parsed }) {
                 </Link>
             </div>
             </div>}
+            <div>
+              <Link to="/">
+                  <button>
+                      Go Home
+                  </button>
+              </Link>
+            </div> 
         <ul>
          {parsed.map((item) => (
           <Link to={`/AllPuzzles/${item.id}`}>
