@@ -5,15 +5,23 @@
 // scores if they are signed in, otherwise the scores will not be saved.
 
 import { Link } from "react-router-dom";
-import { checkUser } from "../Auth/AuthService";
+import { checkUser, logoutUser } from "../Auth/AuthService";
 
 export default function Home() {
+
+    const handleLogout = () => {
+        logoutUser();
+        setTimeout(() => {
+            window.location.reload();
+          }, 500);
+      };
+
     return (
         <section>
             <h1>Digits Reborn</h1>
             {checkUser() ? 
             <div>
-                <button>
+                <button onClick={handleLogout}>
                     Sign Out
                 </button>   
             </div> : 
