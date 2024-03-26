@@ -22,9 +22,18 @@ export default function Home() {
             <h1>Digits Reborn</h1>
             {checkUser() ? 
             <div>
+                <div>
                 <button onClick={handleLogout}>
                     Sign Out
-                </button>   
+                </button>
+                </div>
+                <div>
+                <Link to="/MyScores">
+                    <button>
+                        View My Scores
+                    </button>
+                </Link>
+                </div> 
             </div> : 
             <div>
             <div>

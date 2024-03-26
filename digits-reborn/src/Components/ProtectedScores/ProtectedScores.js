@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { checkUser } from "../Auth/AuthService";
 
-const ProtectedRoute = ({ flag }) => {
+const ProtectedScores = ({ flag }) => {
   const navigate = useNavigate();
   const goHomeHandler = () => {
     navigate("/");
   };
 
   useEffect(() => {
-    if (!flag) {
+    if (!checkUser()) {
       alert("You must be logged in to view this page");
       navigate("/");
     }
@@ -16,7 +17,7 @@ const ProtectedRoute = ({ flag }) => {
 
   return (
         <div>
-        {flag ? (
+        {checkUser() ? (
             <div>
               <p>Welcome! You are authorized!</p>{" "}
               <button onClick={goHomeHandler}>Go Home</button>
@@ -27,4 +28,4 @@ const ProtectedRoute = ({ flag }) => {
   );
 };
 
-export default ProtectedRoute;
+export default ProtectedScores;

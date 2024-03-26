@@ -27,9 +27,18 @@ export default function WeekList({ parsed }) {
         <p> Hi {user} </p>
         {checkUser() ? 
             <div>
+              <div>
                 <button onClick={handleLogout}>
                     Sign Out
-                </button>   
+                </button>  
+              </div>
+              <div>
+                <Link to="/MyScores" flag={checkUser()}>
+                    <button>
+                        View My Scores
+                    </button>
+                </Link>
+                </div>  
             </div> : 
             <div>
             <div>
