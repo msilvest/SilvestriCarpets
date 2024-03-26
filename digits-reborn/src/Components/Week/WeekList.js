@@ -5,7 +5,7 @@
 // not finished inputting all our data.
 
 import { Link } from "react-router-dom";
-import { checkUser } from "../Auth/AuthService";
+import { checkUser, handleLogout } from "../Auth/AuthService";
 import Parse from "parse";
 
 
@@ -25,6 +25,28 @@ export default function WeekList({ parsed }) {
       <div>
         <h1>Choose a Day</h1>
         <p> Hi {user} </p>
+        {checkUser() ? 
+            <div>
+                <button onClick={handleLogout}>
+                    Sign Out
+                </button>   
+            </div> : 
+            <div>
+            <div>
+                <Link to="/Login">
+                    <button>
+                        Sign In
+                    </button>
+                </Link>
+            </div>
+            <div>
+                <Link to="/Register">
+                    <button>
+                        Create Account
+                    </button>
+                </Link>
+            </div>
+            </div>}
         <ul>
          {parsed.map((item) => (
           <Link to={`/AllPuzzles/${item.id}`}>

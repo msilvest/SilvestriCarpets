@@ -49,8 +49,15 @@ export const logoutUser = () => {
   .catch((error) => {
     alert(`Error" ${error.message}`);
   });
-
 }
+
+export const handleLogout = () => {
+    logoutUser();
+    // Timeout so the logout alert displays properly
+    setTimeout(() => {
+        window.location.reload();
+      }, 500);
+};
 
 export const checkUser = () => {
   return Parse.User.current()?.authenticated;

@@ -5,16 +5,17 @@
 // scores if they are signed in, otherwise the scores will not be saved.
 
 import { Link } from "react-router-dom";
-import { checkUser, logoutUser } from "../Auth/AuthService";
+import { checkUser, handleLogout } from "../Auth/AuthService";
 
 export default function Home() {
 
-    const handleLogout = () => {
-        logoutUser();
-        setTimeout(() => {
-            window.location.reload();
-          }, 500);
-      };
+    // const handleLogout = () => {
+    //     logoutUser();
+    //     // Timeout so the logout alert displays properly
+    //     setTimeout(() => {
+    //         window.location.reload();
+    //       }, 500);
+    //   };
 
     return (
         <section>
