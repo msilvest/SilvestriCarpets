@@ -26,7 +26,7 @@ export default function Components() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<AuthLogin />} />
-        <Route path="/Create" element={<AuthRegister />} />
+        <Route path="/Register" element={<AuthRegister />} />
         <Route path="/Puzzle/:puzzleId" element={<Puzzle />} />
         <Route path="/Week" element={<Week />} />
         <Route path="/AllPuzzles/:dayId" element={<AllPuzzles />} />

@@ -64,6 +64,7 @@ const AuthRegister = () => {
     <div>
       <AuthForm
         user={newUser}
+        isLogin={false}
         onChange={onChangeHandler}
         onSubmit={onSubmitHandler}
       />
