@@ -3,7 +3,7 @@
 
 import Parse from "parse";
 
-// used in auth register component
+// used in auth register component (signup)
 export const createUser = (newUser) => {
   const user = new Parse.User();
 
@@ -24,7 +24,7 @@ export const createUser = (newUser) => {
     });
 };
 
-// used in auth login component
+// used in auth login component (login)
 export const loginUser = (currUser) => {
   const user = new Parse.User();
 
@@ -43,7 +43,7 @@ export const loginUser = (currUser) => {
     });
 };
 
-// used to logout user
+// used to logout user (logout)
 export const logoutUser = () => {
   return Parse.User
   .logOut()
@@ -55,7 +55,7 @@ export const logoutUser = () => {
   });
 }
 
-// used to correctly rerender page when user logs out
+// used to correctly rerender page when user logs out (logout)
 export const handleLogout = () => {
     logoutUser();
     // timeout so the logout alert displays properly

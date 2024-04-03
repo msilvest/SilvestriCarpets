@@ -53,8 +53,8 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
             required
           />
         </div>{" "}
-        </div> : <></>}
-        <div>
+      </div> : <></>}
+      <div>
         <div className="form-group">
           <label>Username</label>
           <br />
@@ -89,7 +89,7 @@ const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
             Submit
           </button>
         </div>
-    </div>
+      </div>
   </form>
   );
 };

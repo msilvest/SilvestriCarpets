@@ -62,6 +62,9 @@ const AuthLogin = () => {
 
   return (
     <div>
+    {/* Users already logged in should not be able to see the page */}
+    {!checkUser() ? 
+    <div>
       {/* Just for testing purposes, will be deleted in final iteration */}
       <p>To test login functionality, use these credentials: <br></br>
         username: hi <br></br>
@@ -73,6 +76,7 @@ const AuthLogin = () => {
         onChange={onChangeHandler}
         onSubmit={onSubmitHandler}
       />
+    </div> : <></>}
     </div>
   );
 };

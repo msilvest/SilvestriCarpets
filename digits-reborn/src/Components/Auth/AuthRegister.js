@@ -65,12 +65,16 @@ const AuthRegister = () => {
 
   return (
     <div>
+    {/* Users already logged in should not be able to see the page */}
+    {!checkUser() ? 
+    <div>
       <AuthForm
         user={newUser}
         isLogin={false}
         onChange={onChangeHandler}
         onSubmit={onSubmitHandler}
       />
+    </div> : <></>}
     </div>
   );
 };
