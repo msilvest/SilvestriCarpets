@@ -1,9 +1,14 @@
+// This is our Authentification form that is used for our login/register user functionalities.
+// Depending on whether a user is trying to login or create an account, different text boxes
+// will appear to the user so that we can efficiently reuse code.
 import React from "react";
 
 const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
 
   return (
     <form onSubmit={onSubmit} autoComplete="off">
+    {/* If a user is registering an account, show these additional fields. Otherwise,
+    show nothing */}
     {!isLogin ? 
     <div>
         <div className="form-group">

@@ -1,3 +1,7 @@
+// This is our Login page that handles login attempts for the user. 
+// It will alert the user depending on whether the attempt was a 
+// success or not.
+
 import React, { useEffect, useState } from "react";
 import { checkUser, loginUser } from "./AuthService";
 import AuthForm from "./AuthForm";
@@ -6,13 +10,13 @@ import { useNavigate } from "react-router-dom";
 const AuthLogin = () => {
   const navigate = useNavigate();
 
-  // redirect already authenticated users back to home
+  // Redirect already authenticated users back to home
   const [currentUser, setCurrentUser] = useState({
     username: "",
     password: ""
   });
 
-  // flags in the state to watch for add/remove updates
+  // Flags in the state to watch for add/remove updates
   const [add, setAdd] = useState(false);
 
   useEffect(() => {
@@ -30,9 +34,9 @@ const AuthLogin = () => {
           alert(
             `${userLoggedIn.get("firstName")}, you successfully logged in!`
           );
+          // Navigate to puzzles after successful login
           navigate("/Week");
         }
-        // TODO: redirect user to main app
         setAdd(false);
       });
     }
@@ -40,9 +44,9 @@ const AuthLogin = () => {
 
   const onChangeHandler = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    // console.log(e.target);
     const { name, value: newValue } = e.target;
-    console.log(newValue);
+    // console.log(newValue);
 
     setCurrentUser({
       ...currentUser,
@@ -52,12 +56,17 @@ const AuthLogin = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log("submitted: ", e.target);
+    // console.log("submitted: ", e.target);
     setAdd(true);
   };
 
   return (
     <div>
+      {/* Just for testing purposes, will be deleted in final iteration */}
+      <p>To test login functionality, use these credentials: <br></br>
+        username: hi <br></br>
+        password: hi
+      </p>
       <AuthForm
         user={currentUser}
         isLogin={true}

@@ -15,6 +15,7 @@ export default function WeekList({ parsed }) {
       return <div>No parsed data available</div>;
     }
 
+    // Display username or "Guest" depending on user login status
     var user = "Guest"
     if (checkUser()) {
       const the_user = Parse.User.current();
@@ -24,7 +25,7 @@ export default function WeekList({ parsed }) {
     return (
       <div>
         <h1>Choose a Day</h1>
-        <p> Hi {user} </p>
+        <p> Welcome {user} </p>
         {checkUser() ? 
             <div>
               <div>

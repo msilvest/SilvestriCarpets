@@ -1,5 +1,6 @@
-// This is Components, which contains all our routes and handles our login logic.
-// We plan to update the login logic when we add authentification.
+// This is Components, which contains all our routes. Our login and register
+// functionalities are now being handled by the AuthLogin and AuthRegister
+// components.
 
 import Home from "./Home/Home";
 import AuthRegister from "./Auth/AuthRegister";
@@ -22,6 +23,7 @@ export default function Components() {
         <Route path="/Puzzle/:puzzleId" element={<Puzzle />} />
         <Route path="/Week" element={<Week />} />
         <Route path="/AllPuzzles/:dayId" element={<AllPuzzles />} />
+        {/* Protected Route: */}
         <Route path ="/MyScores" element={<ProtectedScores />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

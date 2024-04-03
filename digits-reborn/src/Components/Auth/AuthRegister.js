@@ -1,3 +1,7 @@
+// This is our Register page that handles registration for new users. 
+// Upon successful registration, the user will be alerted and automatically
+// logged in.
+
 import React, { useEffect, useState } from "react";
 import { checkUser, createUser } from "./AuthService";
 import AuthForm from "./AuthForm";
@@ -14,10 +18,10 @@ const AuthRegister = () => {
     password: ""
   });
 
-  // flags in the state to watch for add/remove updates
+  // Flags in the state to watch for add/remove updates
   const [add, setAdd] = useState(false);
 
-  // redirect already authenticated users back to home
+  // Redirect already authenticated users back to home
   useEffect(() => {
     if (checkUser()) {
       alert("You are already logged in");
@@ -27,16 +31,15 @@ const AuthRegister = () => {
 
   // useEffect that run when changes are made to the state variable flags
   useEffect(() => {
-    // checkUser() ? history.push("/home"): null;
     if (newUser && add) {
       createUser(newUser).then((userCreated) => {
         if (userCreated) {
           alert(
             `${userCreated.get("firstName")}, you successfully registered!`
           );
+          // Navigate to puzzles after successful registration
           navigate("/Week");
         }
-        // TODO: redirect user to main app
         setAdd(false);
       });
     }
@@ -44,9 +47,9 @@ const AuthRegister = () => {
 
   const onChangeHandler = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    // console.log(e.target);
     const { name, value: newValue } = e.target;
-    console.log(newValue);
+    // console.log(newValue);
 
     setNewUser({
       ...newUser,
@@ -56,7 +59,7 @@ const AuthRegister = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log("submitted: ", e.target);
+    // console.log("submitted: ", e.target);
     setAdd(true);
   };
 

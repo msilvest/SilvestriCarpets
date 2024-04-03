@@ -1,3 +1,9 @@
+// This is our protected route component. Only users that are logged in are able to
+// view the contents on this page. Currently, the page just lets the user know that 
+// they are logged in and then provides options for the user to go to different pages.
+// In the future, we plan on displaying all the scores for the puzzles that the user
+// completed on this page.
+
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { checkUser } from "../Auth/AuthService";
