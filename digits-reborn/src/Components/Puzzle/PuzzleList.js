@@ -10,21 +10,34 @@ export default function PuzzleList({ parsed }) {
 
   const [expression, setExpression] = useState('');
   const [gameLog, setGameLog] = useState('');
+  const [mode, setMode] = useState('number'); // 'number' or 'operation'
   const [result, setResult] = useState(0);
 
   // Handle number button click and update expression
   const handleNumberClick = (number) => {
-    setExpression(number);
-    console.log(number)
+    if (mode === 'number') {
+      setExpression(number);
+      setMode('operation')
+    }
+    else {
+      setExpression((prevExpression) => prevExpression + number);
+      setMode('number')
+    }
+
+    console.log(number);
   };
 
   // Handle operator button click and update expression
   const handleOperatorClick = (operator) => {
-    console.log(operator)
+    // if (mode === 'operation') return; // Prevent consecutive operator clicks
+    setExpression((prevExpression) => prevExpression + ' ' + operator + ' ');
+    setMode('operation');
+    console.log(operator);
   };
 
   // Function to handle Enter button click and calculate result
   const handleEnterClick = () => {
+    console.log(expression)
     console.log("Enter")
   };
 
