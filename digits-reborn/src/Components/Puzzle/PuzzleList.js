@@ -9,22 +9,42 @@ import React, { useState } from 'react';
 export default function PuzzleList({ parsed }) {
 
   const [expression, setExpression] = useState('');
-  const [gameLog, setGameLog] = useState('');
+  const [gameLog, setGameLog] = useState([]);
   const [mode, setMode] = useState('number'); // 'number' or 'operation'
   const [result, setResult] = useState(0);
+  const [clickedNumbers, setClickedNumbers] = useState({
+    num1: false,
+    num2: false,
+    num3: false,
+    num4: false,
+    num5: false,
+    num6: false,
+  });
+  const [showNumbers, setShowNumbers] = useState({
+    num1: true,
+    num2: true,
+    num3: true,
+    num4: true,
+    num5: true,
+    num6: true,
+  });
 
   // Handle number button click and update expression
-  const handleNumberClick = (number) => {
+  const handleNumberClick = (numberKey, numberValue) => {
+    setClickedNumbers((prevState) => ({
+      ...prevState,
+      [numberKey]: true,
+    }));
     if (mode === 'number') {
-      setExpression(number);
+      setExpression(numberValue);
       setMode('operation')
     }
     else {
-      setExpression((prevExpression) => prevExpression + number);
+      setExpression((prevExpression) => prevExpression + numberValue);
       setMode('number')
     }
-
-    console.log(number);
+    console.log(clickedNumbers)
+    console.log(numberValue);
   };
 
   // Handle operator button click and update expression
@@ -38,17 +58,66 @@ export default function PuzzleList({ parsed }) {
   // Function to handle Enter button click and calculate result
   const handleEnterClick = () => {
     try {
+      checkClickedNumbers();
       const calculatedExpression = eval(expression);
       const newResult = result + calculatedExpression;
       setResult(newResult);
       // Update Gamelog
-      setGameLog((prevLog) => prevLog + expression + " = " + calculatedExpression + "\t");
+      const newExpression = expression + " = " + calculatedExpression
+      setGameLog([...gameLog, newExpression]);
+      console.log(gameLog)
+      // setGameLog((prevLog) => prevLog + expression + " = " + calculatedExpression + "\t");
+
+
     } catch (error) {
       setResult('Error');
     }
     console.log(expression)
     console.log("Enter")
   };
+
+  const hideAndUpdate = () => {
+
+  }
+
+  const checkClickedNumbers = () => {
+    if (clickedNumbers.num1) {
+      setShowNumbers((prevState) => ({
+        ...prevState,
+        ["num1"]: false,
+      }));
+    }
+    if (clickedNumbers.num2) {
+      setShowNumbers((prevState) => ({
+        ...prevState,
+        ["num2"]: false,
+      }));
+    }
+    if (clickedNumbers.num3) {
+      setShowNumbers((prevState) => ({
+        ...prevState,
+        ["num3"]: false,
+      }));
+    }
+    if (clickedNumbers.num4) {
+      setShowNumbers((prevState) => ({
+        ...prevState,
+        ["num4"]: false,
+      }));
+    }
+    if (clickedNumbers.num5) {
+      setShowNumbers((prevState) => ({
+        ...prevState,
+        ["num5"]: false,
+      }));
+    }
+    if (clickedNumbers.num6) {
+      setShowNumbers((prevState) => ({
+        ...prevState,
+        ["num6"]: false,
+      }));
+    }
+  }
 
   // Check if parsed exists and is an object
   if (!parsed || typeof parsed !== 'object') {
@@ -61,25 +130,37 @@ export default function PuzzleList({ parsed }) {
       <h1>Puzzle!</h1>
       <p><b>{parsed["target"]}</b></p>
       <div>
-        <button key="num1" onClick={() => handleNumberClick(parsed["num1"])}>
-          {parsed["num1"]}
-        </button>
-        <button key="num2" onClick={() => handleNumberClick(parsed["num2"])}>
-          {parsed["num2"]}
-        </button>
-        <button key="num3" onClick={() => handleNumberClick(parsed["num3"])}>
-          {parsed["num3"]}
-        </button>
-        <br />
-        <button key="num4" onClick={() => handleNumberClick(parsed["num4"])}>
-          {parsed["num4"]}
-        </button>
-        <button key="num5" onClick={() => handleNumberClick(parsed["num5"])}>
-          {parsed["num5"]}
-        </button>
-        <button key="num6" onClick={() => handleNumberClick(parsed["num6"])}>
-          {parsed["num6"]}
-        </button>
+      {showNumbers.num1 && (
+          <button key="num1" onClick={() => handleNumberClick('num1', parsed["num1"])}>
+            {parsed["num1"]}
+          </button>
+        )}
+        {showNumbers.num2 && (
+          <button key="num2" onClick={() => handleNumberClick('num2', parsed["num2"])}>
+            {parsed["num2"]}
+          </button>
+        )}
+        {showNumbers.num3 && (
+          <button key="num3" onClick={() => handleNumberClick('num3', parsed["num3"])}>
+            {parsed["num3"]}
+          </button>
+        )}
+        <br/>
+        {showNumbers.num4 && (
+          <button key="num4" onClick={() => handleNumberClick('num4', parsed["num4"])}>
+            {parsed["num4"]}
+          </button>
+        )}
+        {showNumbers.num5 && (
+          <button key="num5" onClick={() => handleNumberClick('num5', parsed["num5"])}>
+            {parsed["num5"]}
+          </button>
+        )}
+        {showNumbers.num6 && (
+          <button key="num6" onClick={() => handleNumberClick('num6', parsed["num6"])}>
+            {parsed["num6"]}
+          </button>
+        )}
         <br />
         <button key="add" onClick={() => handleOperatorClick('+')}>
           +
@@ -99,7 +180,14 @@ export default function PuzzleList({ parsed }) {
       </div>
       <p>Your Answer: {result}</p>
       <br/>
-      <p>Game Log: {gameLog}</p>
+      <div>
+        <p>Game Log:</p>
+        <ul>
+          {gameLog.map((logEntry, index) => (
+          <li key={index}>{logEntry}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
