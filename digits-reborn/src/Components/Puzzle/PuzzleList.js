@@ -41,6 +41,8 @@ export default function PuzzleList({ parsed }) {
       const calculatedExpression = eval(expression);
       const newResult = result + calculatedExpression;
       setResult(newResult);
+      // Update Gamelog
+      setGameLog((prevLog) => prevLog + expression + " = " + calculatedExpression + "\t");
     } catch (error) {
       setResult('Error');
     }
@@ -97,7 +99,7 @@ export default function PuzzleList({ parsed }) {
       </div>
       <p>Your Answer: {result}</p>
       <br/>
-      <p>Game Log: {expression}</p>
+      <p>Game Log: {gameLog}</p>
     </div>
   );
 }
