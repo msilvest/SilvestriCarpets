@@ -4,24 +4,73 @@
 // user can add, subtract, multiply, or divide the numbers they select from the data
 // buttons.
 
+import React, { useState } from 'react';
+
 export default function PuzzleList({ parsed }) {
-    // Check if parsed exists and is an object
-    if (!parsed || typeof parsed !== 'object') {
-      return <div>No parsed data available</div>;
-    }
-  
-    // Render the buttons
-    return (
-      <div>
-        <h1>Puzzle!</h1>
-        <ul>
-          {Object.entries(parsed).map(([key, value]) => (
-            <button key={key}>
-              {value}
-            </button>
-          ))}
-        </ul>
-      </div>
-    );
+
+  // Handle number button click and update expression
+  const handleNumberClick = (number) => {
+    console.log(number)
+  };
+
+  // Handle operator button click and update expression
+  const handleOperatorClick = (operator) => {
+    console.log(operator)
+  };
+
+  // Function to handle Enter button click and calculate result
+  const handleEnterClick = () => {
+    console.log("Enter")
+  };
+
+  // Check if parsed exists and is an object
+  if (!parsed || typeof parsed !== 'object') {
+    return <div>No parsed data available</div>;
   }
+
+  // Render the buttons
+  return (
+    <div>
+      <h1>Puzzle!</h1>
+      <p><b>{parsed["target"]}</b></p>
+      <div>
+        <button key="num1" onClick={() => handleNumberClick(parsed["num1"])}>
+          {parsed["num1"]}
+        </button>
+        <button key="num2" onClick={() => handleNumberClick(parsed["num2"])}>
+          {parsed["num2"]}
+        </button>
+        <button key="num3" onClick={() => handleNumberClick(parsed["num3"])}>
+          {parsed["num3"]}
+        </button>
+        <br />
+        <button key="num4" onClick={() => handleNumberClick(parsed["num4"])}>
+          {parsed["num4"]}
+        </button>
+        <button key="num5" onClick={() => handleNumberClick(parsed["num5"])}>
+          {parsed["num5"]}
+        </button>
+        <button key="num6" onClick={() => handleNumberClick(parsed["num6"])}>
+          {parsed["num6"]}
+        </button>
+        <br />
+        <button key="add" onClick={() => handleOperatorClick('+')}>
+          +
+        </button>
+        <button key="sub" onClick={() => handleOperatorClick('-')}>
+          -
+        </button>
+        <button key="mult" onClick={() => handleOperatorClick('x')}>
+          x
+        </button>
+        <button key="div" onClick={() => handleOperatorClick('/')}>
+          /
+        </button>
+        <button key="enter" onClick={handleEnterClick}>
+          Enter
+        </button>
+      </div>
+    </div>
+  );
+}
   
