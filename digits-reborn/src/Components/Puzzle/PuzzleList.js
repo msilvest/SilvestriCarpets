@@ -8,10 +8,12 @@ import React, { useState } from 'react';
 
 export default function PuzzleList({ parsed }) {
 
+  // Keep track of what the user inputted and what button needs to be clicked next
   const [expression, setExpression] = useState('');
   const [gameLog, setGameLog] = useState([]);
   const [mode, setMode] = useState('number'); // 'number' or 'operation'
-  const [result, setResult] = useState(0);
+
+  // Keep track of which buttons have been clicked
   const [clickedNumbers, setClickedNumbers] = useState({
     num1: false,
     num2: false,
@@ -20,6 +22,8 @@ export default function PuzzleList({ parsed }) {
     num5: false,
     num6: false,
   });
+
+  // Keep track of which buttons should disappear
   const [showNumbers, setShowNumbers] = useState({
     num1: true,
     num2: true,
@@ -31,20 +35,22 @@ export default function PuzzleList({ parsed }) {
 
   // Handle number button click and update expression
   const handleNumberClick = (numberKey, numberValue) => {
+    // Set button as clicked
     setClickedNumbers((prevState) => ({
       ...prevState,
       [numberKey]: true,
     }));
+
+    // If a number has not been selected yet (first num)
     if (mode === 'number') {
       setExpression(numberValue);
       setMode('operation')
     }
+    // If a number has been selected (second num)
     else {
       setExpression((prevExpression) => prevExpression + numberValue);
       setMode('number')
     }
-    console.log(clickedNumbers)
-    console.log(numberValue);
   };
 
   // Handle operator button click and update expression
@@ -52,32 +58,46 @@ export default function PuzzleList({ parsed }) {
     // if (mode === 'operation') return; // Prevent consecutive operator clicks
     setExpression((prevExpression) => prevExpression + ' ' + operator + ' ');
     setMode('operation');
-    console.log(operator);
   };
 
   // Function to handle Enter button click and calculate result
   const handleEnterClick = () => {
-    try {
-      const clickedNums = checkClickedNumbers();
-      console.log("clickedNums")
-      console.log(clickedNums)
-      const calculatedExpression = eval(expression);
-      const newResult = result + calculatedExpression;
-      setResult(newResult);
-      // Update Gamelog
-      const newExpression = expression + " = " + calculatedExpression
-      setGameLog([...gameLog, newExpression]);
-      console.log(gameLog)
-      // setGameLog((prevLog) => prevLog + expression + " = " + calculatedExpression + "\t");
-      resetClickedNumbers();
-    } catch (error) {
-      setResult('Error');
-    }
+    // Find out which two buttons have been clicked
+    const clickedNums = checkClickedNumbers();
+    console.log("clickedNums")
+    console.log(clickedNums)
+
+    // Calculate the expression set the result
+    // const calculatedExpression = eval(expression);
+    // const newResult = result + calculatedExpression;
+    // setResult(newResult);
+    const newResult = eval(expression);
+
+    // Hide one button then update another
+    hideAndUpdate(clickedNums, newResult);
+
+    // Update Gamelog
+    const newExpression = expression + " = " + newResult
+    setGameLog([...gameLog, newExpression]);
+    console.log(gameLog)
+    // setGameLog((prevLog) => prevLog + expression + " = " + calculatedExpression + "\t");
+    resetClickedNumbers();
     console.log(expression)
     console.log("Enter")
   };
 
-  const hideAndUpdate = () => {
+  const hideAndUpdate = (clickedNums, newResult) => {
+    // Hide first button
+    setShowNumbers((prevState) => ({
+      ...prevState,
+      [clickedNums[0]]: false,
+    }));
+
+    // Update value of second
+    console.log("howdy")
+    console.log(parsed[clickedNums[1]]);
+    parsed[clickedNums[1]] = newResult
+    console.log(parsed[clickedNums[1]]);
 
   }
 
@@ -94,45 +114,21 @@ export default function PuzzleList({ parsed }) {
   const checkClickedNumbers = () => {
     const clickedNums = []
     if (clickedNumbers.num1) {
-      setShowNumbers((prevState) => ({
-        ...prevState,
-        "num1": false,
-      }));
       clickedNums.push("num1")
     }
     if (clickedNumbers.num2) {
-      setShowNumbers((prevState) => ({
-        ...prevState,
-        "num2": false,
-      }));
       clickedNums.push("num2")
     }
     if (clickedNumbers.num3) {
-      setShowNumbers((prevState) => ({
-        ...prevState,
-        "num3": false,
-      }));
       clickedNums.push("num3")
     }
     if (clickedNumbers.num4) {
-      setShowNumbers((prevState) => ({
-        ...prevState,
-        "num4": false,
-      }));
       clickedNums.push("num4")
     }
     if (clickedNumbers.num5) {
-      setShowNumbers((prevState) => ({
-        ...prevState,
-        "num5": false,
-      }));
       clickedNums.push("num5")
     }
     if (clickedNumbers.num6) {
-      setShowNumbers((prevState) => ({
-        ...prevState,
-        "num6": false,
-      }));
       clickedNums.push("num6")
     }
 
@@ -148,7 +144,7 @@ export default function PuzzleList({ parsed }) {
   return (
     <div>
       <h1>Puzzle!</h1>
-      <p><b>{parsed["target"]}</b></p>
+      <p><b>Target: {parsed["target"]}</b></p>
       <div>
       {showNumbers.num1 && (
           <button key="num1" onClick={() => handleNumberClick('num1', parsed["num1"])}>
@@ -188,7 +184,7 @@ export default function PuzzleList({ parsed }) {
         <button key="sub" onClick={() => handleOperatorClick('-')}>
           -
         </button>
-        <button key="mult" onClick={() => handleOperatorClick('x')}>
+        <button key="mult" onClick={() => handleOperatorClick('*')}>
           x
         </button>
         <button key="div" onClick={() => handleOperatorClick('/')}>
@@ -198,7 +194,6 @@ export default function PuzzleList({ parsed }) {
           Enter
         </button>
       </div>
-      <p>Your Answer: {result}</p>
       <br/>
       <div>
         <p>Game Log:</p>
