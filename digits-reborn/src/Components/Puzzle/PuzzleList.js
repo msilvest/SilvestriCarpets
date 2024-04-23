@@ -58,7 +58,9 @@ export default function PuzzleList({ parsed }) {
   // Function to handle Enter button click and calculate result
   const handleEnterClick = () => {
     try {
-      checkClickedNumbers();
+      const clickedNums = checkClickedNumbers();
+      console.log("clickedNums")
+      console.log(clickedNums)
       const calculatedExpression = eval(expression);
       const newResult = result + calculatedExpression;
       setResult(newResult);
@@ -67,8 +69,7 @@ export default function PuzzleList({ parsed }) {
       setGameLog([...gameLog, newExpression]);
       console.log(gameLog)
       // setGameLog((prevLog) => prevLog + expression + " = " + calculatedExpression + "\t");
-
-
+      resetClickedNumbers();
     } catch (error) {
       setResult('Error');
     }
@@ -80,43 +81,62 @@ export default function PuzzleList({ parsed }) {
 
   }
 
+  const resetClickedNumbers = () => {
+    setClickedNumbers({
+      num1: false,
+      num2: false,
+      num3: false,
+      num4: false,
+      num5: false,
+      num6: false,
+    });
+  }
   const checkClickedNumbers = () => {
+    const clickedNums = []
     if (clickedNumbers.num1) {
       setShowNumbers((prevState) => ({
         ...prevState,
-        ["num1"]: false,
+        "num1": false,
       }));
+      clickedNums.push("num1")
     }
     if (clickedNumbers.num2) {
       setShowNumbers((prevState) => ({
         ...prevState,
-        ["num2"]: false,
+        "num2": false,
       }));
+      clickedNums.push("num2")
     }
     if (clickedNumbers.num3) {
       setShowNumbers((prevState) => ({
         ...prevState,
-        ["num3"]: false,
+        "num3": false,
       }));
+      clickedNums.push("num3")
     }
     if (clickedNumbers.num4) {
       setShowNumbers((prevState) => ({
         ...prevState,
-        ["num4"]: false,
+        "num4": false,
       }));
+      clickedNums.push("num4")
     }
     if (clickedNumbers.num5) {
       setShowNumbers((prevState) => ({
         ...prevState,
-        ["num5"]: false,
+        "num5": false,
       }));
+      clickedNums.push("num5")
     }
     if (clickedNumbers.num6) {
       setShowNumbers((prevState) => ({
         ...prevState,
-        ["num6"]: false,
+        "num6": false,
       }));
+      clickedNums.push("num6")
     }
+
+    return clickedNums;
   }
 
   // Check if parsed exists and is an object
