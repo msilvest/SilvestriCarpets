@@ -37,6 +37,13 @@ export default function PuzzleList({ parsed }) {
 
   // Function to handle Enter button click and calculate result
   const handleEnterClick = () => {
+    try {
+      const calculatedExpression = eval(expression);
+      const newResult = result + calculatedExpression;
+      setResult(newResult);
+    } catch (error) {
+      setResult('Error');
+    }
     console.log(expression)
     console.log("Enter")
   };
