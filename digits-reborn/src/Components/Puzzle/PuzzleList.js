@@ -8,8 +8,13 @@ import React, { useState } from 'react';
 
 export default function PuzzleList({ parsed }) {
 
+  const [expression, setExpression] = useState('');
+  const [gameLog, setGameLog] = useState('');
+  const [result, setResult] = useState(0);
+
   // Handle number button click and update expression
   const handleNumberClick = (number) => {
+    setExpression(number);
     console.log(number)
   };
 
@@ -70,6 +75,9 @@ export default function PuzzleList({ parsed }) {
           Enter
         </button>
       </div>
+      <p>Your Answer: {result}</p>
+      <br/>
+      <p>Game Log: {expression}</p>
     </div>
   );
 }
