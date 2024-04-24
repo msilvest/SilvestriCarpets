@@ -8,9 +8,7 @@ import React, { useState } from 'react';
 
 export default function PuzzleList({ parsed }) {
   // Keep track of what the user inputted and what button needs to be clicked next
-  // const [expression, setExpression] = useState('');
   const [gameLog, setGameLog] = useState([]);
-  // const [mode, setMode] = useState('number'); // 'number' or 'operation'
 
   // Keep track of the first num, second num, and operator
   const [firstNum, setFirstNum] = useState('');
@@ -73,10 +71,33 @@ export default function PuzzleList({ parsed }) {
     resetShowNumbers();
 
     // Reset both numbers and operation
-    setFirstNum('')
-    setSecondNum('')
-    setOperation('')
+    resetExpression();
   };
+
+  const validResult = (newResult) => {
+    // Check for division by 0
+    if (secondNum === 0 && operation === '/') {
+      alert('Error! You cannot divide by 0')
+      resetExpression();
+      return false
+    }
+
+    // Check for negative numbers
+    if (firstNum < secondNum && operation === '-') {
+      alert('Error! You cannot have negative numbers')
+      resetExpression();
+      return false
+    }
+
+    // Check for non-integer division
+    if (operation === '/' && !Number.isInteger(newResult)) {
+      alert('Error! You must divide evenly')
+      resetExpression();
+      return false
+    }
+
+    return true
+  }
 
   // Handle Enter button click and calculate result
   const handleEnterClick = () => {
@@ -86,6 +107,11 @@ export default function PuzzleList({ parsed }) {
     // Evaluate the expression 
     const expression = firstNum.toString() + operation + secondNum.toString()
     const newResult = eval(expression);
+
+    // Ensure the result is valid
+    if (!validResult(newResult)) {
+      return
+    }
 
     // Hide one button then update another
     hideAndUpdate(clickedNums, newResult);
@@ -98,13 +124,12 @@ export default function PuzzleList({ parsed }) {
     resetClickedNumbers();
 
     // Reset the values of the two numbers and operator
-    setFirstNum('')
-    setSecondNum('')
-    setOperation('')
+    resetExpression();
   };
 
   // Used for gameplay to keep one button and hide the other
   const hideAndUpdate = (clickedNums, newResult) => {
+    console.log(clickedNums)
     // Hide first button
     setShowNumbers((prevState) => ({
       ...prevState,
@@ -138,6 +163,13 @@ export default function PuzzleList({ parsed }) {
       num5: true,
       num6: true,
     });
+  }
+
+  // Reset both numbers and operation
+  const resetExpression = () => {
+    setFirstNum('')
+    setSecondNum('')
+    setOperation('')
   }
 
   // Find which buttons have been clicked
