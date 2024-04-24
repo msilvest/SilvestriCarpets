@@ -13,8 +13,8 @@ export default function PuzzleList({ parsed }) {
   // const [mode, setMode] = useState('number'); // 'number' or 'operation'
 
   // Keep track of the first num, second num, and operator
-  const [firstNum, setFirstNum] = useState(0);
-  const [secondNum, setSecondNum] = useState(0);
+  const [firstNum, setFirstNum] = useState('');
+  const [secondNum, setSecondNum] = useState('');
   const [operation, setOperation] = useState('');
 
   // Keep track of which buttons have been clicked
@@ -46,7 +46,7 @@ export default function PuzzleList({ parsed }) {
     }));
 
     // If a number has been selected (second num)
-    if (firstNum !== 0 && operation !== '') {
+    if (firstNum !== '' && operation !== '') {
       setSecondNum(numberValue)
     }
     // If a number has not been selected yet (first num)
@@ -58,7 +58,7 @@ export default function PuzzleList({ parsed }) {
 
   // Handle operator button clicks
   const handleOperatorClick = (operator) => {
-    if (firstNum !== 0) {
+    if (firstNum !== '') {
       setOperation(operator)
     }
   };
@@ -83,8 +83,8 @@ export default function PuzzleList({ parsed }) {
     resetClickedNumbers();
 
     // Reset the values of the two numbers and operator
-    setFirstNum(0)
-    setSecondNum(0)
+    setFirstNum('')
+    setSecondNum('')
     setOperation('')
   };
 
@@ -97,10 +97,7 @@ export default function PuzzleList({ parsed }) {
     }));
 
     // Update value of second button
-    console.log("howdy")
-    console.log(parsed[clickedNums[1]]);
     parsed[clickedNums[1]] = newResult
-    console.log(parsed[clickedNums[1]]);
 
   }
 
