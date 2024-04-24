@@ -63,6 +63,21 @@ export default function PuzzleList({ parsed }) {
     }
   };
 
+  // Handle reset button clicks
+  const handleResetClick = () => {
+    // Reset game log
+    setGameLog([])
+
+    // Reset all buttons
+    resetClickedNumbers();
+    resetShowNumbers();
+
+    // Reset both numbers and operation
+    setFirstNum('')
+    setSecondNum('')
+    setOperation('')
+  };
+
   // Handle Enter button click and calculate result
   const handleEnterClick = () => {
     // Find out which two buttons have been clicked
@@ -110,6 +125,18 @@ export default function PuzzleList({ parsed }) {
       num4: false,
       num5: false,
       num6: false,
+    });
+  }
+
+  // Set all buttons to be shown
+  const resetShowNumbers = () => {
+    setShowNumbers({
+      num1: true,
+      num2: true,
+      num3: true,
+      num4: true,
+      num5: true,
+      num6: true,
     });
   }
 
@@ -195,6 +222,10 @@ export default function PuzzleList({ parsed }) {
         </button>
         <button key="enter" onClick={handleEnterClick}>
           Enter
+        </button>
+        <br/>
+        <button key="reset" onClick={handleResetClick}>
+          Reset
         </button>
       </div>
       <br/>
