@@ -46,7 +46,7 @@ export default function PuzzleList({ parsed }) {
     }));
 
     // If a number has been selected (second num)
-    if (firstNum !== '' && operation !== '') {
+    if (firstNum !== '' && firstNum !== numberValue && operation !== '') {
       setSecondNum(numberValue)
     }
     // If a number has not been selected yet (first num)
