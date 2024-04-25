@@ -15,7 +15,7 @@ export default function AllPuzzles() {
         getPuzzlesForDay(dayId).then((parsed) => {
           setParsed(parsed);
         });
-      }, []);
+      }, [dayId]);
   
     if (!parsed) {
       return <div>Loading...</div>;

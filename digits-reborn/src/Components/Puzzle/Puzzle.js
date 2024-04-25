@@ -15,7 +15,7 @@ export default function Puzzle() {
       getOnePuzzle(puzzleId).then((parsed) => {
         setParsed(parsed);
       });
-    }, []);
+    }, [puzzleId]);
 
     if (!parsed) {
       return <div>Loading...</div>;
