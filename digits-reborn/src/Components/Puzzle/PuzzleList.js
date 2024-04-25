@@ -4,24 +4,273 @@
 // user can add, subtract, multiply, or divide the numbers they select from the data
 // buttons.
 
+import React, { useState } from 'react';
+
 export default function PuzzleList({ parsed }) {
-    // Check if parsed exists and is an object
-    if (!parsed || typeof parsed !== 'object') {
-      return <div>No parsed data available</div>;
+  // Keep track of what the user inputted and what button needs to be clicked next
+  const [gameLog, setGameLog] = useState([]);
+
+  // Keep track of the first num, second num, and operator
+  const [firstNum, setFirstNum] = useState('');
+  const [secondNum, setSecondNum] = useState('');
+  const [operation, setOperation] = useState('');
+
+  // Keep track of which buttons have been clicked
+  const [clickedNumbers, setClickedNumbers] = useState({
+    num1: false,
+    num2: false,
+    num3: false,
+    num4: false,
+    num5: false,
+    num6: false,
+  });
+
+  // Keep track of which buttons should disappear
+  const [showNumbers, setShowNumbers] = useState({
+    num1: true,
+    num2: true,
+    num3: true,
+    num4: true,
+    num5: true,
+    num6: true,
+  });
+
+  // Handle number button clicks
+  const handleNumberClick = (numberKey, numberValue) => {
+    // Set button as clicked
+    setClickedNumbers((prevState) => ({
+      ...prevState,
+      [numberKey]: true,
+    }));
+
+    // If a number has been selected (second num)
+    if (firstNum !== '' && firstNum !== numberValue && operation !== '') {
+      setSecondNum(numberValue)
     }
-  
-    // Render the buttons
-    return (
+    // If a number has not been selected yet (first num)
+    else {
+      setFirstNum(numberValue)
+    }
+
+  };
+
+  // Handle operator button clicks
+  const handleOperatorClick = (operator) => {
+    if (firstNum !== '') {
+      setOperation(operator)
+    }
+  };
+
+  // Handle reset button clicks
+  const handleResetClick = () => {
+    // Reset game log
+    setGameLog([])
+
+    // Reset all buttons
+    resetClickedNumbers();
+    resetShowNumbers();
+
+    // Reset both numbers and operation
+    resetExpression();
+  };
+
+  const validResult = (newResult) => {
+    // Check for division by 0
+    if (secondNum === 0 && operation === '/') {
+      alert('Error! You cannot divide by 0')
+      resetExpression();
+      return false
+    }
+
+    // Check for negative numbers
+    if (firstNum < secondNum && operation === '-') {
+      alert('Error! You cannot have negative numbers')
+      resetExpression();
+      return false
+    }
+
+    // Check for non-integer division
+    if (operation === '/' && !Number.isInteger(newResult)) {
+      alert('Error! You must divide evenly')
+      resetExpression();
+      return false
+    }
+
+    return true
+  }
+
+  // Handle Enter button click and calculate result
+  const handleEnterClick = () => {
+    // Find out which two buttons have been clicked
+    const clickedNums = checkClickedNumbers();
+
+    // Evaluate the expression 
+    const expression = firstNum.toString() + operation + secondNum.toString()
+    const newResult = eval(expression);
+
+    // Ensure the result is valid
+    if (!validResult(newResult)) {
+      return
+    }
+
+    // Hide one button then update another
+    hideAndUpdate(clickedNums, newResult);
+
+    // Update Gamelog
+    const newExpression = expression + " = " + newResult
+    setGameLog([...gameLog, newExpression]);
+    
+    // Reset all buttons to be unclicked
+    resetClickedNumbers();
+
+    // Reset the values of the two numbers and operator
+    resetExpression();
+  };
+
+  // Used for gameplay to keep one button and hide the other
+  const hideAndUpdate = (clickedNums, newResult) => {
+    console.log(clickedNums)
+    // Hide first button
+    setShowNumbers((prevState) => ({
+      ...prevState,
+      [clickedNums[0]]: false,
+    }));
+
+    // Update value of second button
+    parsed[clickedNums[1]] = newResult
+
+  }
+
+  // Set all buttons to be not clicked
+  const resetClickedNumbers = () => {
+    setClickedNumbers({
+      num1: false,
+      num2: false,
+      num3: false,
+      num4: false,
+      num5: false,
+      num6: false,
+    });
+  }
+
+  // Set all buttons to be shown
+  const resetShowNumbers = () => {
+    setShowNumbers({
+      num1: true,
+      num2: true,
+      num3: true,
+      num4: true,
+      num5: true,
+      num6: true,
+    });
+  }
+
+  // Reset both numbers and operation
+  const resetExpression = () => {
+    setFirstNum('')
+    setSecondNum('')
+    setOperation('')
+  }
+
+  // Find which buttons have been clicked
+  const checkClickedNumbers = () => {
+    const clickedNums = []
+    if (clickedNumbers.num1) {
+      clickedNums.push("num1")
+    }
+    if (clickedNumbers.num2) {
+      clickedNums.push("num2")
+    }
+    if (clickedNumbers.num3) {
+      clickedNums.push("num3")
+    }
+    if (clickedNumbers.num4) {
+      clickedNums.push("num4")
+    }
+    if (clickedNumbers.num5) {
+      clickedNums.push("num5")
+    }
+    if (clickedNumbers.num6) {
+      clickedNums.push("num6")
+    }
+
+    return clickedNums;
+  }
+
+  // Check if parsed exists and is an object
+  if (!parsed || typeof parsed !== 'object') {
+    return <div>No parsed data available</div>;
+  }
+
+  // Render the buttons
+  return (
+    <div>
+      <h1>Puzzle!</h1>
+      <p><b>Target: {parsed["target"]}</b></p>
       <div>
-        <h1>Puzzle!</h1>
+      {showNumbers.num1 && (
+          <button key="num1" onClick={() => handleNumberClick('num1', parsed["num1"])}>
+            {parsed["num1"]}
+          </button>
+        )}
+        {showNumbers.num2 && (
+          <button key="num2" onClick={() => handleNumberClick('num2', parsed["num2"])}>
+            {parsed["num2"]}
+          </button>
+        )}
+        {showNumbers.num3 && (
+          <button key="num3" onClick={() => handleNumberClick('num3', parsed["num3"])}>
+            {parsed["num3"]}
+          </button>
+        )}
+        <br/>
+        {showNumbers.num4 && (
+          <button key="num4" onClick={() => handleNumberClick('num4', parsed["num4"])}>
+            {parsed["num4"]}
+          </button>
+        )}
+        {showNumbers.num5 && (
+          <button key="num5" onClick={() => handleNumberClick('num5', parsed["num5"])}>
+            {parsed["num5"]}
+          </button>
+        )}
+        {showNumbers.num6 && (
+          <button key="num6" onClick={() => handleNumberClick('num6', parsed["num6"])}>
+            {parsed["num6"]}
+          </button>
+        )}
+        <br />
+        <button key="add" onClick={() => handleOperatorClick('+')}>
+          +
+        </button>
+        <button key="sub" onClick={() => handleOperatorClick('-')}>
+          -
+        </button>
+        <button key="mult" onClick={() => handleOperatorClick('*')}>
+          x
+        </button>
+        <button key="div" onClick={() => handleOperatorClick('/')}>
+          /
+        </button>
+        <button key="enter" onClick={handleEnterClick}>
+          Enter
+        </button>
+        <br/>
+        <button key="reset" onClick={handleResetClick}>
+          Reset
+        </button>
+      </div>
+      <br/>
+      <div>
+        <p>My selection: {firstNum} {operation} {secondNum}</p>
+        <p>Game Log:</p>
         <ul>
-          {Object.entries(parsed).map(([key, value]) => (
-            <button key={key}>
-              {value}
-            </button>
+          {gameLog.map((logEntry, index) => (
+          <li key={index}>{logEntry}</li>
           ))}
         </ul>
       </div>
-    );
-  }
+    </div>
+  );
+}
   
