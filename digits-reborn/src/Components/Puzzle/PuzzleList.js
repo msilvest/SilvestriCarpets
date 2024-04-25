@@ -99,6 +99,22 @@ export default function PuzzleList({ parsed }) {
     return true
   }
 
+  const evalExpression = (the_first_num, the_sec_num) => {
+    if (operation === '+') {
+      return the_first_num + the_sec_num 
+    }
+    else if (operation === '-') {
+      return the_first_num - the_sec_num
+    }
+    else if (operation === '*') {
+      return the_first_num * the_sec_num
+    }
+    else if (operation === '/') {
+      return the_first_num / the_sec_num
+    }
+
+  }
+
   // Handle Enter button click and calculate result
   const handleEnterClick = () => {
     // Find out which two buttons have been clicked
@@ -106,7 +122,7 @@ export default function PuzzleList({ parsed }) {
 
     // Evaluate the expression 
     const expression = firstNum.toString() + operation + secondNum.toString()
-    const newResult = eval(expression);
+    const newResult = evalExpression(parseInt(firstNum), parseInt(secondNum));
 
     // Ensure the result is valid
     if (!validResult(newResult)) {
