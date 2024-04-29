@@ -204,59 +204,59 @@ export default function PuzzleList({ parsed }) {
 
   // Render the buttons
   return (
-    <div>
+    <div className="puzzle-page">
       <h1>Puzzle!</h1>
       <p><b>Target: {parsed["target"]}</b></p>
       <div>
       {showNumbers.num1 && (
-          <button key="num1" onClick={() => handleNumberClick('num1', parsed["num1"])}>
+          <button className="home-button" key="num1" onClick={() => handleNumberClick('num1', parsed["num1"])}>
             {parsed["num1"]}
           </button>
         )}
         {showNumbers.num2 && (
-          <button key="num2" onClick={() => handleNumberClick('num2', parsed["num2"])}>
+          <button className="home-button" key="num2" onClick={() => handleNumberClick('num2', parsed["num2"])}>
             {parsed["num2"]}
           </button>
         )}
         {showNumbers.num3 && (
-          <button key="num3" onClick={() => handleNumberClick('num3', parsed["num3"])}>
+          <button className="home-button" key="num3" onClick={() => handleNumberClick('num3', parsed["num3"])}>
             {parsed["num3"]}
           </button>
         )}
         <br/>
         {showNumbers.num4 && (
-          <button key="num4" onClick={() => handleNumberClick('num4', parsed["num4"])}>
+          <button className="home-button" key="num4" onClick={() => handleNumberClick('num4', parsed["num4"])}>
             {parsed["num4"]}
           </button>
         )}
         {showNumbers.num5 && (
-          <button key="num5" onClick={() => handleNumberClick('num5', parsed["num5"])}>
+          <button className="home-button" key="num5" onClick={() => handleNumberClick('num5', parsed["num5"])}>
             {parsed["num5"]}
           </button>
         )}
         {showNumbers.num6 && (
-          <button key="num6" onClick={() => handleNumberClick('num6', parsed["num6"])}>
+          <button className="home-button" key="num6" onClick={() => handleNumberClick('num6', parsed["num6"])}>
             {parsed["num6"]}
           </button>
         )}
         <br />
-        <button key="add" onClick={() => handleOperatorClick('+')}>
+        <button className="day-btn" key="add" onClick={() => handleOperatorClick('+')}>
           +
         </button>
-        <button key="sub" onClick={() => handleOperatorClick('-')}>
+        <button className="day-btn" key="sub" onClick={() => handleOperatorClick('-')}>
           -
         </button>
-        <button key="mult" onClick={() => handleOperatorClick('*')}>
+        <button className="day-btn" key="mult" onClick={() => handleOperatorClick('*')}>
           x
         </button>
-        <button key="div" onClick={() => handleOperatorClick('/')}>
+        <button className="day-btn" key="div" onClick={() => handleOperatorClick('/')}>
           /
         </button>
-        <button key="enter" onClick={handleEnterClick}>
+        <button className="day-btn" key="enter" onClick={handleEnterClick}>
           Enter
         </button>
         <br/>
-        <button key="reset" onClick={handleResetClick}>
+        <button className="day-btn" key="reset" onClick={handleResetClick}>
           Reset
         </button>
       </div>

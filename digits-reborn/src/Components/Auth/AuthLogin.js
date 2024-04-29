@@ -64,7 +64,7 @@ const AuthLogin = () => {
     <div>
     {/* Users already logged in should not be able to see the page */}
     {!checkUser() ? 
-    <div>
+    <div className="form-page">
       {/* Just for testing purposes, will be deleted in final iteration */}
       <p>To test login functionality, use these credentials: <br></br>
         username: hi <br></br>
