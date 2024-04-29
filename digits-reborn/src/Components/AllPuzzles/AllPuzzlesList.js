@@ -12,12 +12,12 @@ export default function AllPuzzlesList({ parsed }) {
   
     // Render the buttons
     return (
-      <div>
+      <div className="week-page">
         <h1>All Puzzles</h1>
         <ul>
          {parsed.map((item) => (
           <Link to={`/Puzzle/${item.id}`}>
-            <button>
+            <button className="day-btn">
               {item.attributes.name}
             </button>
           </Link>

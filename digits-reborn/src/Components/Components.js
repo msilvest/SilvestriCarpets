@@ -10,6 +10,7 @@ import Week from "./Week/Week";
 import AllPuzzles from "./AllPuzzles/AllPuzzles"
 import ProtectedScores from "./ProtectedScores/ProtectedScores"
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import './Components.css'
 
 export default function Components() {
 

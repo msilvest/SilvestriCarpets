@@ -23,19 +23,28 @@ export default function WeekList({ parsed }) {
     }
 
     return (
-      <div>
+      <div className="week-page">
         <h1>Choose a Day</h1>
-        <p> Welcome {user} </p>
+        <p className="user-greet"> Welcome {user} </p>
         {checkUser() ? 
             <div>
+              <ul>
+                {parsed.map((item) => (
+                <Link to={`/AllPuzzles/${item.id}`}>
+                  <button className="day-btn">
+                    {item.attributes.dayName}
+                  </button>
+                </Link>
+          ))} 
+         </ul>
               <div>
-                <button onClick={handleLogout}>
+                <button className="home-button" onClick={handleLogout}>
                     Sign Out
                 </button>  
               </div>
               <div>
                 <Link to="/MyScores" flag={checkUser()}>
-                    <button>
+                    <button className="home-button">
                         View My Scores
                     </button>
                 </Link>
@@ -44,14 +53,14 @@ export default function WeekList({ parsed }) {
             <div>
             <div>
                 <Link to="/Login">
-                    <button>
+                    <button className="home-button">
                         Sign In
                     </button>
                 </Link>
             </div>
             <div>
                 <Link to="/Register">
-                    <button>
+                    <button className="home-button">
                         Create Account
                     </button>
                 </Link>
@@ -59,20 +68,20 @@ export default function WeekList({ parsed }) {
             </div>}
             <div>
               <Link to="/">
-                  <button>
+                  <button className="home-button">
                       Go Home
                   </button>
               </Link>
             </div> 
-        <ul>
+        {/* {<ul>
          {parsed.map((item) => (
           <Link to={`/AllPuzzles/${item.id}`}>
-            <button>
+            <button className="day-btn">
               {item.attributes.dayName}
             </button>
           </Link>
           ))} 
-         </ul>
+         </ul>} */}
          <p>Only Sunday has data in back4app, so it is the only button (for now) that
           when clicked, will show you buttons to the puzzles for that day. We plan to add
           more data for future iterations.

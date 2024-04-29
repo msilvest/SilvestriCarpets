@@ -28,10 +28,10 @@ const ProtectedScores = () => {
   return (
         <div>
         {checkUser() ? (
-            <div>
+            <div className="week-page">
               <p>Welcome! You are logged in and can view your scores!</p>{" "}
-              <button onClick={goHomeHandler}>Go Home</button>
-              <button onClick={goPuzzlesHandler}>Go to Puzzles</button>
+              <button className="day-btn" onClick={goHomeHandler}>Go Home</button>
+              <button className="day-btn" onClick={goPuzzlesHandler}>Go to Puzzles</button>
             </div>
         ) : ( <></>
         )}

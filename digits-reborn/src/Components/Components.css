@@ -1,0 +1,102 @@
+/* Components.css */
+
+/* Import Bootstrap CSS */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css');
+
+.btn-primary {
+  background-color: #28a745; /* Green color */
+  border-color: #28a745;
+}
+
+.rounded-btn {
+  border-radius: 50px; /* ounded button */
+}
+
+/* Home page styling */
+.home-page {
+  background-color: #d5fac3; /* Change the background color */
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  min-height: 100vh; /* Ensure the container takes up the full viewport height */
+  text-align: center; /* Center text horizontally */
+  transform: scale(2);
+}
+
+.home-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 15px 30px; 
+  border-radius: 50%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Hover effect */
+.home-button:hover {
+  background-color: #0056b3;
+}
+
+/* Styles for title */
+.home-title {
+  font-size: 36px; /* Increase font size */
+  margin-bottom: 20px; /* Add some space below the title */
+}
+
+/* styling for form pages */
+.form-page {
+  background-color: #d5fac3; /* Change the background color */
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  min-height: 100vh; /* Ensure the container takes up the full viewport height */
+  text-align: center; /* Center text horizontally */
+  color: black;
+  transform: scale(2);
+}
+
+.form-page button {
+  margin-top: 20px;
+  margin-bottom: 10px; /* Add space between elements */
+}
+
+.week-page {
+  background-color: #d5fac3; /* Change the background color */
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  min-height: 100vh; /* Ensure the container takes up the full viewport height */
+  text-align: center; /* Center text horizontally */
+  transform: scale(1.5);
+}
+
+
+/* styling for day buttons */
+.day-btn {
+  border: 2px solid black; /* Black border */
+  border-radius: 20px; /* Rounded border */
+  background-color: white; /* White background */
+  color: black; /* Black text color */
+  margin: 5px; /* Margin between buttons */
+  padding: 10px 20px; /* Padding for buttons */
+}
+
+.day-btn:hover {
+  background-color: #9ac1ea;
+}
+
+/* styling for puzzle page */
+.puzzle-page {
+  background-color: #d5fac3; /* Change the background color */
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  min-height: 100vh; /* Ensure the container takes up the full viewport height */
+  text-align: center; /* Center text horizontally */
+  transform: scale(1.5);
+}

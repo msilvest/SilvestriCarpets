@@ -64,7 +64,7 @@ const AuthRegister = () => {
   };
 
   return (
-    <div>
+    <div className="form-page">
     {/* Users already logged in should not be able to see the page */}
     {!checkUser() ? 
     <div>
