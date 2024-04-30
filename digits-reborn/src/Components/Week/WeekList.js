@@ -81,11 +81,7 @@ export default function WeekList({ parsed }) {
             </button>
           </Link>
           ))} 
-         </ul>} 
-         <p>Only Sunday has data in back4app, so it is the only button (for now) that
-          when clicked, will show you buttons to the puzzles for that day. We plan to add
-          more data for future iterations.
-         </p>
+         </ul>
       </div>
     );
   }

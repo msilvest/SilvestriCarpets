@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 
 export default function Puzzle() {
     const [parsed, setParsed] = useState([]);
+    const [parsedReset, setParsedReset] = useState([]);
     const { puzzleId }  = useParams();
 
     // Get one puzzle based on button selected by user
@@ -17,9 +18,16 @@ export default function Puzzle() {
       });
     }, [puzzleId]);
 
+    // Get a second instance of this puzzle to use on game's reset functionality
+    useEffect(() => {
+      getOnePuzzle(puzzleId).then((parsedReset) => {
+        setParsedReset(parsedReset);
+      });
+    }, [puzzleId]);
+
     if (!parsed) {
       return <div>Loading...</div>;
     }
-  
-    return <PuzzleList parsed={parsed} />;
+
+    return <PuzzleList parsed={parsed} parsedReset={parsedReset} />;
   }
