@@ -12,6 +12,7 @@ export default function PuzzleList({ parsed, parsedReset }) {
 
   // Keep track of the first num, second num, and operator
   const [firstNum, setFirstNum] = useState('');
+  const [firstNumKey, setFirstNumKey] = useState('');
   const [secondNum, setSecondNum] = useState('');
   const [operation, setOperation] = useState('');
 
@@ -44,12 +45,13 @@ export default function PuzzleList({ parsed, parsedReset }) {
     }));
 
     // If a number has been selected (second num)
-    if (firstNum !== '' && firstNum !== numberValue && operation !== '') {
+    if (firstNum !== '' && firstNumKey !== numberKey && operation !== '') {
       setSecondNum(numberValue)
     }
     // If a number has not been selected yet (first num)
     else {
-      setFirstNum(numberValue)
+      setFirstNumKey(numberKey);
+      setFirstNum(numberValue);
     }
 
   };
