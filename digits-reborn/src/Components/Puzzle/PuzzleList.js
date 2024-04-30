@@ -144,6 +144,11 @@ export default function PuzzleList({ parsed, parsedReset }) {
 
     // Reset the values of the two numbers and operator
     resetExpression();
+
+    // Check if the user won the puzzle
+    if (newResult === parsed["target"]) {
+      alert("Congratulations! You won! :)")
+    }
   };
 
   // Used for gameplay to keep one button and hide the other
