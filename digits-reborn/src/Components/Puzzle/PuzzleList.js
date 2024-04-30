@@ -6,7 +6,7 @@
 
 import React, { useState } from 'react';
 
-export default function PuzzleList({ parsed }) {
+export default function PuzzleList({ parsed, parsedReset }) {
   // Keep track of what the user inputted and what button needs to be clicked next
   const [gameLog, setGameLog] = useState([]);
 
@@ -66,9 +66,12 @@ export default function PuzzleList({ parsed }) {
     // Reset game log
     setGameLog([])
 
-    // Reset all buttons
+    // Reset all button statuses
     resetClickedNumbers();
     resetShowNumbers();
+
+    // Reset all button values
+    resetButtons();
 
     // Reset both numbers and operation
     resetExpression();
@@ -186,6 +189,16 @@ export default function PuzzleList({ parsed }) {
     setFirstNum('')
     setSecondNum('')
     setOperation('')
+  }
+
+  // Reset the values of all the buttons
+  const resetButtons = () => {
+    parsed["num1"] = parsedReset["num1"];
+    parsed["num2"] = parsedReset["num2"];
+    parsed["num3"] = parsedReset["num3"];
+    parsed["num4"] = parsedReset["num4"];
+    parsed["num5"] = parsedReset["num5"];
+    parsed["num6"] = parsedReset["num6"];
   }
 
   // Find which buttons have been clicked
