@@ -10,25 +10,25 @@ import { checkUser, handleLogout } from "../Auth/AuthService";
 export default function Home() {
 
     return (
-        <section>
-            <h1>Digits Reborn</h1>
+        <section className="home-page">
+            <h1 className="home-title">Digits Reborn</h1>
             {checkUser() ? 
             <div>
                 <div>
-                <button onClick={handleLogout}>
+                <button className="home-button" onClick={handleLogout}>
                     Sign Out
                 </button>
                 </div>
                 <div>
                 <Link to="/MyScores">
-                    <button>
+                    <button className="home-button">
                         View My Scores
                     </button>
                 </Link>
                 </div> 
                 <div>
                 <Link to="/Week">
-                    <button>
+                    <button className="home-button">
                         Go to Puzzles
                     </button>
                 </Link>
@@ -37,21 +37,21 @@ export default function Home() {
             <div>
             <div>
                 <Link to="/Login">
-                    <button>
+                    <button className="home-button">
                         Sign In
                     </button>
                 </Link>
             </div>
             <div>
                 <Link to="/Register">
-                    <button>
+                    <button className="home-button">
                         Create Account
                     </button>
                 </Link>
             </div>
             <div>
                 <Link to="/Week">
-                    <button>
+                    <button className="home-button">
                         Guest User
                     </button>
                 </Link>
