@@ -73,6 +73,13 @@ export default function WeekList({ parsed }) {
                   </button>
               </Link>
             </div> 
+            <div>
+                <Link to="/ChangePassword">
+                  <button className="home-button">
+                    Change Password
+                  </button>
+                </Link>
+              </div>
         {/* {<ul>
          {parsed.map((item) => (
           <Link to={`/AllPuzzles/${item.id}`}>
