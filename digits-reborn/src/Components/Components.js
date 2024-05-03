@@ -9,8 +9,9 @@ import Puzzle from "./Puzzle/Puzzle";
 import Week from "./Week/Week";
 import AllPuzzles from "./AllPuzzles/AllPuzzles"
 import ProtectedScores from "./ProtectedScores/ProtectedScores"
+import ChangePasswordPage from "./Auth/AuthChangePass";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import './Components.css'
+import './Components.css';
 
 export default function Components() {
 
@@ -26,6 +27,7 @@ export default function Components() {
         <Route path="/AllPuzzles/:dayId" element={<AllPuzzles />} />
         {/* Protected Route: */}
         <Route path ="/MyScores" element={<ProtectedScores />} />
+        <Route path="/ChangePassword" element={<ChangePasswordPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       {/* Convenient place to put a footer in the future since it's outside of Routes

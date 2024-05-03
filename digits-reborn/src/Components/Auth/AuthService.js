@@ -68,3 +68,24 @@ export const handleLogout = () => {
 export const checkUser = () => {
   return Parse.User.current()?.authenticated;
 };
+
+export const changePassword = (currentPassword, newPassword) => {
+  const currentUser = Parse.User.current();
+  console.log(currentPassword);
+  console.log(newPassword);
+
+  if (!currentUser) {
+    alert('No user is currently logged in.');
+    return;
+  }
+
+  return currentUser.save({ password: newPassword }, { sessionToken: currentUser.getSessionToken() })
+    .then((user) => {
+      alert('Password changed successfully.');
+      return user;
+    })
+    .catch((error) => {
+      alert(`Error: ${error.message}`);
+      throw error;
+    });
+};

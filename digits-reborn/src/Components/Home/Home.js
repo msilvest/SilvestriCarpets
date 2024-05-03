@@ -5,7 +5,7 @@
 // scores if they are signed in, otherwise the scores will not be saved.
 
 import { Link } from "react-router-dom";
-import { checkUser, handleLogout } from "../Auth/AuthService";
+import { checkUser, handleLogout, changePassword } from "../Auth/AuthService";
 
 export default function Home() {
 
