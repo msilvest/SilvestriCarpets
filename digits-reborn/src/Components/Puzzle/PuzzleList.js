@@ -6,12 +6,13 @@
 
 import React, { useState } from 'react';
 
-export default function PuzzleList({ parsed }) {
+export default function PuzzleList({ parsed, parsedReset }) {
   // Keep track of what the user inputted and what button needs to be clicked next
   const [gameLog, setGameLog] = useState([]);
 
   // Keep track of the first num, second num, and operator
   const [firstNum, setFirstNum] = useState('');
+  const [firstNumKey, setFirstNumKey] = useState('');
   const [secondNum, setSecondNum] = useState('');
   const [operation, setOperation] = useState('');
 
@@ -44,12 +45,13 @@ export default function PuzzleList({ parsed }) {
     }));
 
     // If a number has been selected (second num)
-    if (firstNum !== '' && firstNum !== numberValue && operation !== '') {
+    if (firstNum !== '' && firstNumKey !== numberKey && operation !== '') {
       setSecondNum(numberValue)
     }
     // If a number has not been selected yet (first num)
     else {
-      setFirstNum(numberValue)
+      setFirstNumKey(numberKey);
+      setFirstNum(numberValue);
     }
 
   };
@@ -66,9 +68,12 @@ export default function PuzzleList({ parsed }) {
     // Reset game log
     setGameLog([])
 
-    // Reset all buttons
+    // Reset all button statuses
     resetClickedNumbers();
     resetShowNumbers();
+
+    // Reset all button values
+    resetButtons();
 
     // Reset both numbers and operation
     resetExpression();
@@ -99,6 +104,22 @@ export default function PuzzleList({ parsed }) {
     return true
   }
 
+  const evalExpression = (the_first_num, the_sec_num) => {
+    if (operation === '+') {
+      return the_first_num + the_sec_num 
+    }
+    else if (operation === '-') {
+      return the_first_num - the_sec_num
+    }
+    else if (operation === '*') {
+      return the_first_num * the_sec_num
+    }
+    else if (operation === '/') {
+      return the_first_num / the_sec_num
+    }
+
+  }
+
   // Handle Enter button click and calculate result
   const handleEnterClick = () => {
     // Find out which two buttons have been clicked
@@ -106,7 +127,7 @@ export default function PuzzleList({ parsed }) {
 
     // Evaluate the expression 
     const expression = firstNum.toString() + operation + secondNum.toString()
-    const newResult = eval(expression);
+    const newResult = evalExpression(parseInt(firstNum), parseInt(secondNum));
 
     // Ensure the result is valid
     if (!validResult(newResult)) {
@@ -125,6 +146,11 @@ export default function PuzzleList({ parsed }) {
 
     // Reset the values of the two numbers and operator
     resetExpression();
+
+    // Check if the user won the puzzle
+    if (newResult === parsed["target"]) {
+      alert("Congratulations! You won! :)")
+    }
   };
 
   // Used for gameplay to keep one button and hide the other
@@ -170,6 +196,16 @@ export default function PuzzleList({ parsed }) {
     setFirstNum('')
     setSecondNum('')
     setOperation('')
+  }
+
+  // Reset the values of all the buttons
+  const resetButtons = () => {
+    parsed["num1"] = parsedReset["num1"];
+    parsed["num2"] = parsedReset["num2"];
+    parsed["num3"] = parsedReset["num3"];
+    parsed["num4"] = parsedReset["num4"];
+    parsed["num5"] = parsedReset["num5"];
+    parsed["num6"] = parsedReset["num6"];
   }
 
   // Find which buttons have been clicked

@@ -28,15 +28,6 @@ export default function WeekList({ parsed }) {
         <p className="user-greet"> Welcome {user} </p>
         {checkUser() ? 
             <div>
-              <ul>
-                {parsed.map((item) => (
-                <Link to={`/AllPuzzles/${item.id}`}>
-                  <button className="day-btn">
-                    {item.attributes.dayName}
-                  </button>
-                </Link>
-          ))} 
-         </ul>
               <div>
                 <button className="home-button" onClick={handleLogout}>
                     Sign Out

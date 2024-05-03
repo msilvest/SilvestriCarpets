@@ -21,7 +21,7 @@
   align-items: center; /* Center items vertically */
   min-height: 100vh; /* Ensure the container takes up the full viewport height */
   text-align: center; /* Center text horizontally */
-  transform: scale(2);
+  /*transform: scale(2);*/
 }
 
 .home-button {
@@ -55,7 +55,7 @@
   min-height: 100vh; /* Ensure the container takes up the full viewport height */
   text-align: center; /* Center text horizontally */
   color: black;
-  transform: scale(2);
+  /*transform: scale(2);*/
 }
 
 .form-page button {
@@ -71,7 +71,7 @@
   align-items: center; /* Center items vertically */
   min-height: 100vh; /* Ensure the container takes up the full viewport height */
   text-align: center; /* Center text horizontally */
-  transform: scale(1.5);
+  /*transform: scale(1.5);*/
 }
 
 
@@ -98,5 +98,5 @@
   align-items: center; /* Center items vertically */
   min-height: 100vh; /* Ensure the container takes up the full viewport height */
   text-align: center; /* Center text horizontally */
-  transform: scale(1.5);
+  /*transform: scale(1.5);*/
 }
