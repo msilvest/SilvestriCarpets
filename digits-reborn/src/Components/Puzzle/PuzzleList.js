@@ -252,7 +252,7 @@ export default function PuzzleList({ parsed, parsedReset, puzzleId, puzzleName, 
 
   const openPopup = () => {
     var popup = document.getElementById("popup");
-    popup.style.display = popup.style.display === "none" ? "block" : "none";
+    popup.style.display = "block";
   }
 
   const closePopup = () => {
