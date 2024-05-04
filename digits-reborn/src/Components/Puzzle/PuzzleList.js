@@ -250,6 +250,16 @@ export default function PuzzleList({ parsed, parsedReset, puzzleId, puzzleName, 
     return clickedNums;
   }
 
+  const openPopup = () => {
+    var popup = document.getElementById("popup");
+    popup.style.display = popup.style.display === "none" ? "block" : "none";
+  }
+
+  const closePopup = () => {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+  }
+
   // Check if parsed exists and is an object
   if (!parsed || typeof parsed !== 'object') {
     return <div>No parsed data available</div>;
@@ -259,6 +269,12 @@ export default function PuzzleList({ parsed, parsedReset, puzzleId, puzzleName, 
   return (
     <div className="puzzle-page">
       <h1>Puzzle!</h1>
+      <button className="day-btn" onClick={openPopup}> How to Play </button>
+        <div id="popup" class="popup">
+          <h2>This is a pop-up box!</h2>
+          <p>Hello, world!</p>
+          <button onClick={closePopup}>Close</button>
+        </div>
       <p><b>Target: {parsed["target"]}</b></p>
       <div>
       {showNumbers.num1 && (
