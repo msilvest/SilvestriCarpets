@@ -271,9 +271,15 @@ export default function PuzzleList({ parsed, parsedReset, puzzleId, puzzleName, 
       <h1>Puzzle!</h1>
       <button className="day-btn" onClick={openPopup}> How to Play </button>
         <div id="popup" class="popup">
-          <h2>This is a pop-up box!</h2>
-          <p>Hello, world!</p>
-          <button onClick={closePopup}>Close</button>
+          <h2>How to Play Digits Reborn</h2>
+          <p><b>Combine Numbers to Reach the Target</b></p>
+          <ul>
+            <li>Add, subtract, multiply, and divide any of the six numbers to get the target.</li>
+            <li>You do not have to use all of the numbers.</li>
+            <li>As you select buttons, your expression will appear on screen. Hit enter to carry out the expression.</li>
+            <li>Operations that produce fractions or negative numbers will not be accepted.</li>
+          </ul>
+          <button className="day-btn" onClick={closePopup}>Close</button>
         </div>
       <p><b>Target: {parsed["target"]}</b></p>
       <div>
