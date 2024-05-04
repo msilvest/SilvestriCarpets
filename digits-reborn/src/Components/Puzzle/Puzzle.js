@@ -5,11 +5,28 @@ import { useState, useEffect } from "react";
 import PuzzleList from "./PuzzleList";
 import { getOnePuzzle} from "../../Services/Puzzles";
 import { useParams } from "react-router-dom";
+import { getPuzzleDayName, getPuzzleName } from "../../Services/Puzzles";
 
 export default function Puzzle() {
     const [parsed, setParsed] = useState([]);
     const [parsedReset, setParsedReset] = useState([]);
     const { puzzleId }  = useParams();
+    const [puzzleName, setPuzzleName] = useState([]);
+    const [puzzleDayName, setPuzzleDayName] = useState([]);
+
+    // Get puzzle's name based on button selected by user
+    useEffect(() => {
+      getPuzzleName(puzzleId).then((puzzleName) => {
+        setPuzzleName(puzzleName);
+      });
+    }, [puzzleId]);
+
+    // Get puzzle's day of the week name based on button selected by user
+    useEffect(() => {
+      getPuzzleDayName(puzzleId).then((puzzleDayName) => {
+        setPuzzleDayName(puzzleDayName);
+      });
+    }, [puzzleId]);
 
     // Get one puzzle based on button selected by user
     useEffect(() => {
@@ -29,5 +46,5 @@ export default function Puzzle() {
       return <div>Loading...</div>;
     }
 
-    return <PuzzleList parsed={parsed} parsedReset={parsedReset} />;
+    return <PuzzleList parsed={parsed} parsedReset={parsedReset} puzzleId={puzzleId} puzzleName={puzzleName} puzzleDayName={puzzleDayName} />;
   }

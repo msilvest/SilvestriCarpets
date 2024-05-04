@@ -4,9 +4,11 @@
 // In the future, we plan on displaying all the scores for the puzzles that the user
 // completed on this page.
 
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { checkUser } from "../Auth/AuthService";
+import { getScoresByUserID } from "../../Services/Scores";
+import Parse from "parse";
 
 const ProtectedScores = () => {
   const navigate = useNavigate();
@@ -17,6 +19,8 @@ const ProtectedScores = () => {
     navigate("/Week");
   };
 
+  const [scores, setScores] = useState()
+
   // checkUser() returns a boolean and it is used as a flag to keep the route protected
   useEffect(() => {
     if (!checkUser()) {
@@ -25,11 +29,35 @@ const ProtectedScores = () => {
     }
   }, [navigate]);
 
+  // Get user id and name
+  const userID = Parse.User.current().id;
+  const userName = Parse.User.current().get("firstName");
+  
+  // Get all of a user's scores
+  useEffect(() => {
+    getScoresByUserID(userID).then((scores) => {
+        setScores(scores);
+      });
+  }, [userID]);
+
   return (
         <div>
         {checkUser() ? (
             <div className="week-page">
-              <p>Welcome! You are logged in and can view your scores!</p>{" "}
+              <div>
+                <h2>{userName}'s Scores</h2>
+                {scores && scores.length > 0 ? (
+                <ul>
+                {scores.map((score, index) => (
+                <li key={index}>
+                Day: {score.get("puzzleDay")} - Name: {score.get("puzzleName")} - Score: {score.get("score")}
+                </li>
+                ))}
+                </ul>
+              ) : (
+              <p>No scores available. Play more puzzles!</p>
+              )}
+              </div>
               <button className="day-btn" onClick={goHomeHandler}>Go Home</button>
               <button className="day-btn" onClick={goPuzzlesHandler}>Go to Puzzles</button>
             </div>

@@ -5,8 +5,10 @@
 // buttons.
 
 import React, { useState } from 'react';
+import { checkUser, addScore } from "../Auth/AuthService";
+import Parse from "parse";
 
-export default function PuzzleList({ parsed, parsedReset }) {
+export default function PuzzleList({ parsed, parsedReset, puzzleId, puzzleName, puzzleDayName }) {
   // Keep track of what the user inputted and what button needs to be clicked next
   const [gameLog, setGameLog] = useState([]);
 
@@ -120,6 +122,21 @@ export default function PuzzleList({ parsed, parsedReset }) {
 
   }
 
+  // Used to insert new score entry into scores database
+  const insertNewScore = () => {
+    // Add a score if user is logged in
+    if (checkUser()) {
+      const scoreEntry = {
+        user: Parse.User.current().id,
+        puzzle: puzzleId,
+        puzzleName: puzzleName,
+        puzzleDay: puzzleDayName,
+        score: 3
+      }
+      addScore(scoreEntry);
+    }
+  }
+
   // Handle Enter button click and calculate result
   const handleEnterClick = () => {
     // Find out which two buttons have been clicked
@@ -150,12 +167,12 @@ export default function PuzzleList({ parsed, parsedReset }) {
     // Check if the user won the puzzle
     if (newResult === parsed["target"]) {
       alert("Congratulations! You won! :)")
+      insertNewScore();
     }
   };
 
   // Used for gameplay to keep one button and hide the other
   const hideAndUpdate = (clickedNums, newResult) => {
-    console.log(clickedNums)
     // Hide first button
     setShowNumbers((prevState) => ({
       ...prevState,
