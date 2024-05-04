@@ -105,6 +105,8 @@ export const addScore = (newDataEntry) => {
     } else {  
       newScoreEntry.set("user", newDataEntry.user);
       newScoreEntry.set("puzzle", newDataEntry.puzzle);
+      newScoreEntry.set("puzzleName", newDataEntry.puzzleName);
+      newScoreEntry.set("puzzleDay", newDataEntry.puzzleDay);
       newScoreEntry.set("score", 3);
       return newScoreEntry.save();
     }

@@ -29,17 +29,17 @@ const ProtectedScores = () => {
     }
   }, [navigate]);
 
-  // Get one puzzle based on button selected by user
+  // Get user id and name
   const userID = Parse.User.current().id;
   const userName = Parse.User.current().get("firstName");
   
+  // Get all of a user's scores
   useEffect(() => {
     getScoresByUserID(userID).then((scores) => {
         setScores(scores);
       });
   }, [userID]);
 
-  console.log(scores)
   return (
         <div>
         {checkUser() ? (
@@ -50,7 +50,7 @@ const ProtectedScores = () => {
                 <ul>
                 {scores.map((score, index) => (
                 <li key={index}>
-                Day: {score.get("puzzleDay")} - Puzzle: {score.get("puzzleName")} - Score: {score.get("score")}
+                Day: {score.get("puzzleDay")} - Name: {score.get("puzzleName")} - Score: {score.get("score")}
                 </li>
                 ))}
                 </ul>

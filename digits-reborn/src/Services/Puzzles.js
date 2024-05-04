@@ -49,3 +49,27 @@ export const getOnePuzzle = async (puzzleId) => {
 
     return filteredAttributes;
 };
+
+// Get the name of a puzzle
+export const getPuzzleName = async (puzzleId) => {
+    let Puzzles = Parse.Object.extend("Puzzles");
+    let query = new Parse.Query(Puzzles);
+    const results = await query.get(puzzleId);
+
+    return results.get("name");
+}
+
+// Get day name associated with a certain puzzle
+export const getPuzzleDayName = async (puzzleId) => {
+    let Puzzles = Parse.Object.extend("Puzzles");
+    let query = new Parse.Query(Puzzles);
+    const results = await query.get(puzzleId);
+
+    const dayId = results.get("day").id
+
+    let Days = Parse.Object.extend("Days");
+    let query2 = new Parse.Query(Days);
+    const results2 = await query2.get(dayId);
+
+    return results2.get("dayName");
+}
