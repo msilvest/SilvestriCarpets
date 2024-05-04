@@ -69,6 +69,7 @@ export const checkUser = () => {
   return Parse.User.current()?.authenticated;
 };
 
+// Change a current user's password
 export const changePassword = (currentPassword, newPassword) => {
   const currentUser = Parse.User.current();
   console.log(currentPassword);
