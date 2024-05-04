@@ -29,5 +29,5 @@ export default function Puzzle() {
       return <div>Loading...</div>;
     }
 
-    return <PuzzleList parsed={parsed} parsedReset={parsedReset} />;
+    return <PuzzleList parsed={parsed} parsedReset={parsedReset} puzzleId={puzzleId} />;
   }

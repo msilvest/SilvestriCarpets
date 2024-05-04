@@ -1,5 +1,6 @@
 // This is where all the services specific to our auth component are defined.
 // These functions help us to create, login, and logout users.
+// There is also a function to add scores to users' leaderboards.
 
 import Parse from "parse";
 
@@ -13,7 +14,6 @@ export const createUser = (newUser) => {
   user.set("password", newUser.password);
   user.set("email", newUser.email);
 
-  // console.log("User: ", user);
   return user
     .signUp()
     .then((newUserSaved) => {
@@ -31,8 +31,6 @@ export const loginUser = (currUser) => {
   user.set("password", currUser.password);
   user.set("username", currUser.username);
 
-  // console.log("User: ", user);
-  // console.log();
   return user
     .logIn(user.username, user.password)
     .then((currUserSaved) => {
@@ -69,7 +67,7 @@ export const checkUser = () => {
   return Parse.User.current()?.authenticated;
 };
 
-// Change a current user's password
+// change a current user's password
 export const changePassword = (currentPassword, newPassword) => {
   const currentUser = Parse.User.current();
   console.log(currentPassword);
@@ -89,4 +87,30 @@ export const changePassword = (currentPassword, newPassword) => {
       alert(`Error: ${error.message}`);
       throw error;
     });
+};
+
+// add a score to the user's leaderboard
+export const addScore = (newDataEntry) => {
+  const Scores = Parse.Object.extend("Scores");
+  const newScoreEntry = new Scores();
+
+  const puzzleToCheck = newDataEntry.puzzle;
+
+  const query = new Parse.Query(Scores);
+  query.equalTo("puzzle", puzzleToCheck);
+  return query.first().then(function(existingData) {
+    if (existingData) {
+      alert("Duplicate entry: Puzzle has already been solved.");
+      return Promise.reject("Duplicate entry: Puzzle has already been solved.");
+    } else {  
+      newScoreEntry.set("user", newDataEntry.user);
+      newScoreEntry.set("puzzle", newDataEntry.puzzle);
+      newScoreEntry.set("score", 3);
+      return newScoreEntry.save();
+    }
+  }).then((newScoreSaved) => {
+    return newScoreSaved;
+  }).catch((error) => {
+    alert(`Error: ${error.message}`);
+  });
 };
